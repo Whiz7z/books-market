@@ -1,0 +1,33 @@
+.edit_product_modal-container {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(201, 201, 201, 0.5);
+  z-index: 155;
+  left: 0;
+  top: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 300px) 1fr minmax(0, 300px);
+  overflow: scroll;
+}
+
+.edit_product_form-container {
+  width: 600px;
+  min-height: 600px;
+  background-color: var(--main);
+  grid-column: 2/3;
+  align-self: center;
+  justify-self: center;
+  border: 2px solid black;
+  display: grid;
+}
+
+.admin_add-edit-form-title {
+  margin-top: 30px;
+  justify-self: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.edit_product_buttons {
+}
