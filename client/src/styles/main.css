@@ -1,10 +1,12 @@
 :root {
-  --main: #e8e3d1;
+  --main: rgb(249, 248, 238);
   --second: #deb8c3;
   --third: #89d2dc;
   --activeThird: #aee1e7;
-  --text: #454ade;
+  --text: #3f3113;
   --dark: #0d0c1d;
+  --banner: #e8e3d1;
+  --btnhover: #eab839;
 }
 * {
   padding: 0;
@@ -12,7 +14,7 @@
   box-sizing: border-box;
   text-decoration: none;
   color: var(--text);
-  font-family: "Roboto";
+  font-family: "Lato", sans-serif;
   list-style-type: none;
 }
 
@@ -81,7 +83,10 @@ html {
   padding: 20px;
   display: grid;
   width: 600px;
-  grid-template-columns: 1fr 1fr 1fr auto;
+
+  grid-auto-flow: column;
+  grid-template-columns: auto;
+  column-gap: 60px;
   justify-content: center;
   justify-items: center;
   align-items: center;

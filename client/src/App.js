@@ -9,12 +9,15 @@ import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
 import CheckOutPage from "./Pages/CheckOutPage";
 import StripePage from "./Pages/StripePage";
+import MainPage from "./Pages/MainPage";
 function App() {
   return (
     <div>
       <Menu />
       <Routes>
-        <Route path="/" element={<ProfilePage />} exact></Route>
+        <Route path="/" element={<MainPage />} exact></Route>
+
+        <Route path="/main" element={<MainPage />} exact></Route>
 
         <Route path="/products" element={<ProductsPage />} exact></Route>
 

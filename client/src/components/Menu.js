@@ -50,6 +50,14 @@ const Menu = () => {
         <ul className="menu-list">
           <li className="menu-list_item">
             <NavLink
+              to="main"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              main.
+            </NavLink>
+          </li>
+          <li className="menu-list_item">
+            <NavLink
               to="products"
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
@@ -57,7 +65,7 @@ const Menu = () => {
             </NavLink>
           </li>
           {userInfo && userInfo.token && (
-            <li>
+            <li className="menu-list_item">
               <NavLink
                 to="profile"
                 style={({ isActive }) =>
@@ -71,12 +79,14 @@ const Menu = () => {
             </li>
           )}
           {userInfo && userInfo.isAdmin && (
-            <NavLink
-              to="adminpanel"
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              admin panel.
-            </NavLink>
+            <li className="menu-list_item">
+              <NavLink
+                to="adminpanel"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                admin panel.
+              </NavLink>
+            </li>
           )}
         </ul>
         <div className="shoping_cart-item">
