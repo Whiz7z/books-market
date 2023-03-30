@@ -31,3 +31,30 @@
 
 .edit_product_buttons {
 }
+
+.tags-container {
+  width: 100%;
+  display: flex;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  grid-auto-rows: max-content;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.form_tag-item {
+  height: 30px;
+  background-color: #083d77;
+  line-height: 30px;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  border-radius: 7px;
+  padding: 0 10px;
+  transition: 200ms;
+}
+
+.form_tag-item:hover {
+  background-color: #6184d8;
+  transition: 300ms;
+}

@@ -1,5 +1,6 @@
 import express from "express";
 import Product from "../models/Product.js";
+import Tag from "../models/Tag.js";
 import fs from "fs";
 import mongoose from "mongoose";
 import asyncHandler from "express-async-handler";
@@ -25,7 +26,7 @@ const getProducts = asyncHandler(async (req, res) => {
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const { id, title, description, price, category, stock } = req.body.product;
 
   const _id = mongoose.Types.ObjectId(id);
@@ -39,15 +40,17 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.stock = stock;
 
     const updatedProduct = await product.save();
-    fs.unlink("../server/productImages/" + updatedProduct.imagePath, (err) => {
-      if (err) {
-        throw err;
-      }
+    console.log("updated product", updatedProduct);
 
-      console.log("Delete File successfully.");
-    });
+    try {
+      fs.unlink(
+        "../server/productImages/" + updatedProduct.imagePath,
+        (err) => {
+          console.log("Delete File successfully.");
+        }
+      );
+    } catch (err) {}
 
-    console.log("updatedProduct", updatedProduct);
     res.json(updatedProduct);
   } else {
     res.status(404);
@@ -56,22 +59,34 @@ const updateProduct = asyncHandler(async (req, res) => {
 });
 
 const createProduct = asyncHandler(async (req, res) => {
-  const { title, description, price, category, stock } = req.body.product;
+  const { title, description, price, category, stock, author, tags } =
+    req.body.product;
   console.log(req.body);
   // const _id = mongoose.Types.ObjectId(id);
   const newProduct = await Product.create({
     title: title,
+    author: author,
     description: description,
     price: price,
     category: category
       .split(" ")
       .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
       .join(" "),
+    tags: tags.filter((value, index, array) => array.indexOf(value) === index),
     stock: stock,
   });
   console.log("product cc", newProduct);
   await newProduct.save();
-  const products = await Product.find({});
+
+  const allTags = await Tag.find({});
+
+  console.log(allTags);
+
+  allTags[0].allTags.push(...tags);
+
+  const updatedTags = await allTags[0].save();
+
+  console.log("updated tags", updatedTags);
   if (newProduct) {
     res.json(newProduct);
   } else {
@@ -96,7 +111,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
         "../server/productImages/" + productToDelete.imagePath,
         (err) => {
           if (err) {
-            throw err;
+            console.log(err);
           }
 
           console.log("Delete File successfully.");

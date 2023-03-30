@@ -10,6 +10,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import tagRoutes from "./routes/tagRoutes.js";
 import bodyParser from "body-parser";
 import fs from "fs";
 // Schemas
@@ -46,12 +47,13 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/tags", tagRoutes);
 
 app.use("/images", express.static("productImages"));
 
 app.post("/api/uploadimage", upload.single("image"), async (req, res) => {
   try {
-    console.log(req.file);
+    console.log("req file", req.file);
     fs.rename(
       req.file.destination + "/" + req.file.filename,
       req.file.destination +

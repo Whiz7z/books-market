@@ -19,3 +19,22 @@ export const updateProduct = (product, token) => async (dispatch) => {
     console.log(response.data);
   } catch (error) {}
 };
+
+export const getAllTags = async (token) => {
+  try {
+    const config = {
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await axios.get("/api/tags/", config);
+    //console.log(response.data);
+    if (response.status > 400) {
+      console.log(response);
+    } else {
+      return response.data;
+    }
+  } catch (err) {}
+};
