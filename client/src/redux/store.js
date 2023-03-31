@@ -32,6 +32,7 @@ export {
   useUpdateProductMutation,
   useCreateProductMutation,
   useDeleteProductMutation,
+  useGetCategoriesAndPreviewQuery,
 } from "./apis/productsApi";
 
 export {

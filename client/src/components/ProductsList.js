@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../redux/store";
-import { useGetAllProductsQuery } from "../redux/store";
+import {
+  useGetAllProductsQuery,
+  useGetCategoriesAndPreviewQuery,
+} from "../redux/store";
 import { createGlobalStyle } from "styled-components";
 
 const ProductsList = () => {
+  const [categories, setCategories] = useState();
   const choosenCategory = useSelector(
     (state) => state.products.categoryChoosen
   );
   const { data, error, isFetching } = useGetAllProductsQuery(choosenCategory);
+  const { dataCategories, errorCategories, isFetchingCategories } =
+    useGetCategoriesAndPreviewQuery(choosenCategory);
   const dispatch = useDispatch();
 
   const addToCartHandler = (product) => {
     dispatch(addToCart(product));
   };
+
+  useEffect(() => {
+    if (dataCategories) {
+      console.log(dataCategories);
+    }
+  }, [dataCategories]);
 
   return (
     <>

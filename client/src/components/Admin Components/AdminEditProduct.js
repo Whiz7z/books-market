@@ -51,17 +51,20 @@ const AdminEditProduct = ({ product, onCloseModal }) => {
               price: value.price,
               category: value.category,
               stock: value.stock,
+              isPhotoChanged: fileImage ? true : false,
             };
             await updateProduct(productToChange)
               .unwrap()
               .then((data) => {
                 onCloseModal();
                 console.log("updated product", data);
-                const file = new FormData();
-                file.append("image", fileImage);
-                file.append("productId", data._id);
-                const uploadImageResponse = uploadImage(file);
-                console.log(uploadImageResponse);
+                if (fileImage) {
+                  const file = new FormData();
+                  file.append("image", fileImage);
+                  file.append("productId", data._id);
+                  const uploadImageResponse = uploadImage(file);
+                  console.log(uploadImageResponse);
+                }
               });
           }}
         >

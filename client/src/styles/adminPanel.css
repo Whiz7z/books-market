@@ -37,9 +37,9 @@
 
 .admin_product_list-item {
   width: 500px;
-  height: 500px;
+  min-height: 500px;
   border: 2px solid black;
-
+  padding: 0 10px;
   background-color: var(--third);
   display: grid;
 }

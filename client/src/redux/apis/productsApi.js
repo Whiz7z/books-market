@@ -32,6 +32,14 @@ const productsApi = createApi({
           };
         },
       }),
+      getCategoriesAndPreview: builder.query({
+        query: () => {
+          return {
+            url: "/api/products/categories",
+            method: "GET",
+          };
+        },
+      }),
       updateProduct: builder.mutation({
         invalidatesTags: (result, error) => {
           return [{ type: "Product Updated" }];
@@ -83,5 +91,6 @@ export const {
   useUpdateProductMutation,
   useCreateProductMutation,
   useDeleteProductMutation,
+  useGetCategoriesAndPreviewQuery,
 } = productsApi;
 export { productsApi };

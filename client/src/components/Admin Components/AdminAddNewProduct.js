@@ -26,10 +26,7 @@ const EditingSchema = Yup.object().shape({
     .min(4, "Too Short!")
     .max(3550, "Too Long!")
     .required("Required"),
-  tags: Yup.string()
-    .min(2, "Too Short!")
-    .max(1500, "Too Long!")
-    .required("Required"),
+  tags: Yup.string().min(2, "Too Short!").max(1500, "Too Long!"),
   price: Yup.number().required("Required"),
   category: Yup.string()
     .min(2, "Too Short!")
@@ -104,11 +101,13 @@ const AdminAddNewProduct = ({ onCloseModal }) => {
               price: value.price,
               category: value.category,
               tags: value.tags
-                .split(", ")
-                .concat(tagsSelected)
-                .filter(
-                  (value, index, array) => array.indexOf(value) === index
-                ),
+                ? value.tags
+                    .split(", ")
+                    .concat(tagsSelected)
+                    .filter(
+                      (value, index, array) => array.indexOf(value) === index
+                    )
+                : tagsSelected,
               stock: value.stock,
             };
 

@@ -25,9 +25,22 @@ const getProducts = asyncHandler(async (req, res) => {
   }
 });
 
+const getCategoriesAndPreview = asyncHandler(async (req, res) => {
+  try {
+    const data = await Product.find({}).select("category imagePath -_id");
+    const unique = [
+      ...new Map(data.map((item) => [item["category"], item])).values(),
+    ];
+    console.log("category", unique);
+
+    res.json(unique);
+  } catch (err) {}
+});
+
 const updateProduct = asyncHandler(async (req, res) => {
   //console.log(req.body);
-  const { id, title, description, price, category, stock } = req.body.product;
+  const { id, title, description, price, category, stock, isPhotoChanged } =
+    req.body.product;
 
   const _id = mongoose.Types.ObjectId(id);
 
@@ -43,12 +56,14 @@ const updateProduct = asyncHandler(async (req, res) => {
     console.log("updated product", updatedProduct);
 
     try {
-      fs.unlink(
-        "../server/productImages/" + updatedProduct.imagePath,
-        (err) => {
-          console.log("Delete File successfully.");
-        }
-      );
+      if (isPhotoChanged) {
+        fs.unlink(
+          "../server/productImages/" + updatedProduct.imagePath,
+          (err) => {
+            console.log("Delete File successfully.");
+          }
+        );
+      }
     } catch (err) {}
 
     res.json(updatedProduct);
@@ -62,6 +77,10 @@ const createProduct = asyncHandler(async (req, res) => {
   const { title, description, price, category, stock, author, tags } =
     req.body.product;
   console.log(req.body);
+
+  tags.forEach(function (part, index, theArray) {
+    theArray[index] = part.trim();
+  });
   // const _id = mongoose.Types.ObjectId(id);
   const newProduct = await Product.create({
     title: title,
@@ -72,7 +91,11 @@ const createProduct = asyncHandler(async (req, res) => {
       .split(" ")
       .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
       .join(" "),
-    tags: tags.filter((value, index, array) => array.indexOf(value) === index),
+    tags: tags.filter(
+      (value, index, array) =>
+        array.indexOf(value) === index && value.trim().length > 0
+    ),
+
     stock: stock,
   });
   console.log("product cc", newProduct);
@@ -128,6 +151,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 });
 
 productRoutes.route("/").get(getProducts);
+productRoutes.route("/categories").get(getCategoriesAndPreview);
 productRoutes.route("/").put(protectRoute, admin, updateProduct);
 productRoutes.route("/").post(protectRoute, admin, createProduct);
 productRoutes.route("/").delete(protectRoute, admin, deleteProduct);
