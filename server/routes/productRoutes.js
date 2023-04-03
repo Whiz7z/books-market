@@ -25,15 +25,43 @@ const getProducts = asyncHandler(async (req, res) => {
   }
 });
 
+const getProductByTags = asyncHandler(async (req, res) => {
+  if (req.query.tags.trim("").length > 0) {
+    const tags = req.query.tags.split(",");
+
+    try {
+      const products = await Product.find({ tags: { $all: tags } });
+
+      res.json(products);
+    } catch (err) {}
+  } else {
+    res.status(404).json("Products not found");
+    throw new Error("Products not found.");
+  }
+});
+
 const getCategoriesAndPreview = asyncHandler(async (req, res) => {
   try {
     const data = await Product.find({}).select("category imagePath -_id");
+    const categories = await Product.find({}).select("category -_id");
+    const counts = {};
+
+    for (const num of categories) {
+      counts[num.category] = counts[num.category]
+        ? counts[num.category] + 1
+        : 1;
+    }
+    console.log(counts);
     const unique = [
       ...new Map(data.map((item) => [item["category"], item])).values(),
     ];
-    console.log("category", unique);
+    console.log("category");
 
-    res.json(unique);
+    const response = {
+      unique: unique,
+      counts: counts,
+    };
+    res.json(response);
   } catch (err) {}
 });
 
@@ -151,6 +179,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 });
 
 productRoutes.route("/").get(getProducts);
+productRoutes.route("/byTags").get(getProductByTags);
 productRoutes.route("/categories").get(getCategoriesAndPreview);
 productRoutes.route("/").put(protectRoute, admin, updateProduct);
 productRoutes.route("/").post(protectRoute, admin, createProduct);

@@ -63,6 +63,7 @@ const productsSlice = createSlice({
   name: "products",
   initialState: {
     categoryChoosen: "all",
+    products: [],
     isLoading: false,
     error: null,
   },
@@ -71,6 +72,13 @@ const productsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.categoryChoosen = action.payload;
+    },
+
+    setProducts: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.products = action.payload;
+      localStorage.setItem("searchedProducts", JSON.stringify(action.payload));
     },
   },
 });

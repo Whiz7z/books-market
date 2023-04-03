@@ -32,10 +32,29 @@ const productsApi = createApi({
           };
         },
       }),
+      getProductsByTags: builder.query({
+        query: (tags) => {
+          return {
+            url: "/api/products/byTags",
+            params: {
+              tags: tags,
+            },
+            method: "GET",
+          };
+        },
+      }),
       getCategoriesAndPreview: builder.query({
         query: () => {
           return {
             url: "/api/products/categories",
+            method: "GET",
+          };
+        },
+      }),
+      getAllTags: builder.query({
+        query: () => {
+          return {
+            url: "/api/tags",
             method: "GET",
           };
         },
@@ -92,5 +111,7 @@ export const {
   useCreateProductMutation,
   useDeleteProductMutation,
   useGetCategoriesAndPreviewQuery,
+  useGetAllTagsQuery,
+  useLazyGetProductsByTagsQuery,
 } = productsApi;
 export { productsApi };

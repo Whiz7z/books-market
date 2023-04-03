@@ -20,6 +20,6 @@ const getAllTags = asyncHandler(async (req, res) => {
   } catch (err) {}
 });
 
-tagRoutes.route("/").get(protectRoute, admin, getAllTags);
+tagRoutes.route("/").get(getAllTags);
 
 export default tagRoutes;

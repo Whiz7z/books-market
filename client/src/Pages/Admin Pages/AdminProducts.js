@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CategoriesBar from "./../../components/CategoriesBar";
+import TagsSearchBar from "./../../components/TagsSearchBar";
 import AdminProductsList from "../../components/Admin Components/AdminProductsList";
 import AdminAddNewProduct from "../../components/Admin Components/AdminAddNewProduct";
 import ProductModal from "../../components/ProductModal";
@@ -13,7 +13,7 @@ const AdminProducts = () => {
   return (
     <div className="products-wrapper">
       <div className="products-sidebar">
-        <CategoriesBar />
+        <TagsSearchBar />
       </div>
       <div className="products-content">
         <button

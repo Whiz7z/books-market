@@ -22,14 +22,14 @@ export const updateProduct = (product, token) => async (dispatch) => {
 
 export const getAllTags = async (token) => {
   try {
-    const config = {
-      headers: {
-        authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     authorization: `Bearer ${token}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // };
 
-    const response = await axios.get("/api/tags/", config);
+    const response = await axios.get("/api/tags/");
     //console.log(response.data);
     if (response.status > 400) {
       console.log(response);

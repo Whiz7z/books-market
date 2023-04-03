@@ -33,6 +33,8 @@ export {
   useCreateProductMutation,
   useDeleteProductMutation,
   useGetCategoriesAndPreviewQuery,
+  useGetAllTagsQuery,
+  useLazyGetProductsByTagsQuery,
 } from "./apis/productsApi";
 
 export {
