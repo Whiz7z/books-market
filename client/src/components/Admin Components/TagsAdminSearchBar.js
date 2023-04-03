@@ -1,19 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { chooseCategory, setProducts } from "../redux/store";
+import { chooseCategory, setProducts } from "../../redux/store";
 import {
   useGetAllProductsQuery,
   useGetAllTagsQuery,
   useLazyGetProductsByTagsQuery,
-} from "../redux/store";
-import * as Yup from "yup";
-import { Formik, Form, Field } from "formik";
+} from "../../redux/store";
+
 import { Link } from "react-router-dom";
-import { useSelectedTags } from "./zustand/store";
+import { useSelectedTags } from "../zustand/store";
 
 const selected = "#eab839";
 
-const TagsSearchBar = ({ onSearch, onClearSearch }) => {
+const TagsSeTagsAdminSearchBar = ({ onSearch, onClearSearch }) => {
   const tagRef = useRef();
   const dispatch = useDispatch();
   const { data, error, isFetching } = useGetAllProductsQuery("all");
@@ -25,7 +24,14 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
   } = useGetAllTagsQuery();
 
   const [categories, setCategories] = useState();
-  const { tags, setTags, resetTags } = useSelectedTags((state) => state);
+  const {
+    tags,
+    setTags,
+    resetTags,
+    selectedCategory,
+    setCategory,
+    resetCategory,
+  } = useSelectedTags((state) => state);
   const choosenCategory = useSelector(
     (state) => state.products.categoryChoosen
   );
@@ -43,6 +49,8 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
   const searchByTagsHandler = (tags) => {
     onSearch(tags);
   };
+
+  const searchByCategoryHandler = (category) => {};
 
   const clearSearchAndTags = () => {
     resetTags();
@@ -76,21 +84,12 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
                     const index = tags.indexOf(tag);
                     if (index > -1) {
                       setTags(tags.filter((el) => el !== tag));
-
-                      //e.target.style.backgroundColor = "#6a603c";
                     }
                   } else {
                     setTags([...tags, tag]);
-
-                    //e.target.style.backgroundColor = "#eab839";
                   }
                 }}
                 className="categories_list-item"
-                // style={
-                //   tag === choosenCategory
-                //     ? { backgroundColor: "#eab839" }
-                //     : { backgroundColor: "#6a603c" }
-                // }
               >
                 {tag}
               </div>
@@ -110,8 +109,41 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
       >
         Clear
       </button>
+      <h2 className="categories-title">Find by category</h2>
+      <div className="categories_list-container">
+        {categories &&
+          categories.map((category) => {
+            let isSelected = selectedCategory === category;
+            return (
+              <div
+                className="categories_list-item"
+                key={category}
+                onMouseEnter={(e) =>
+                  (e.target.style.border = "2px solid #eab839")
+                }
+                onMouseLeave={(e) =>
+                  (e.target.style.border = "2px solid transparent")
+                }
+                style={
+                  isSelected
+                    ? { backgroundColor: "#eab839" }
+                    : { backgroundColor: "#6a603c" }
+                }
+                onClick={(e) => {
+                  if (selectedCategory === category) {
+                    resetCategory();
+                  } else {
+                    setCategory(category);
+                  }
+                }}
+              >
+                {category}
+              </div>
+            );
+          })}
+      </div>
     </>
   );
 };
 
-export default TagsSearchBar;
+export default TagsSeTagsAdminSearchBar;

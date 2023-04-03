@@ -12,11 +12,11 @@ import { createGlobalStyle } from "styled-components";
 const EditingSchema = Yup.object().shape({
   title: Yup.string()
     .min(4, "Too Short!")
-    .max(50, "Too Long!")
+    .max(100, "Too Long!")
     .required("Required"),
   description: Yup.string()
     .min(4, "Too Short!")
-    .max(50, "Too Long!")
+    .max(3550, "Too Long!")
     .required("Required"),
   price: Yup.number().required("Required"),
   category: Yup.string()

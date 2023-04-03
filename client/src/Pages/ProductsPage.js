@@ -7,6 +7,7 @@ import { useLazyGetProductsByTagsQuery } from "../redux/store";
 import { useDispatch } from "react-redux";
 import { setProducts } from "../redux/store";
 import CollectionsList from "../components/CollectionsList";
+import { Routes, Route, useParams } from "react-router-dom";
 
 const ProductsPage = () => {
   const [showProductList, setShowProductList] = useState(false);
@@ -44,13 +45,37 @@ const ProductsPage = () => {
       <div className="products-sidebar">
         <TagsSearchBar onSearch={searchHandler} onClearSearch={clearSearch} />
       </div>
-      <div className="products-content">
-        {findedProductsByTags && isSuccess && !showProductList ? (
-          <ProductsList products={findedProductsByTags} />
-        ) : (
-          <CollectionsList />
-        )}
-      </div>
+
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <>
+              {findedProductsByTags && isSuccess && !showProductList ? (
+                <ProductsList
+                  products={findedProductsByTags}
+                  searchByCategory={false}
+                  clearSearch={clearSearch}
+                />
+              ) : (
+                <div className="products-content">
+                  <CollectionsList />
+                </div>
+              )}
+            </>
+          }
+        ></Route>
+        <Route
+          exact
+          path="category/:category"
+          element={
+            <div className="products-content">
+              <ProductsList searchByCategory={true} clearSearch={clearSearch} />
+            </div>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 };

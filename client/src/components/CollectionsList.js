@@ -33,7 +33,7 @@ const CollectionsList = () => {
                 {dataCategories.counts[el.category]} Products
               </p>
               <Link
-                to={`?category=${el.category}`}
+                to={`category/${el.category}`}
                 className="product_viev_product-btn"
               >
                 View Products

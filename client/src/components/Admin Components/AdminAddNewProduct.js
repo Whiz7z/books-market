@@ -16,7 +16,7 @@ import { getAllTags } from "../../redux/actions/adminActions";
 const EditingSchema = Yup.object().shape({
   title: Yup.string()
     .min(4, "Too Short!")
-    .max(50, "Too Long!")
+    .max(100, "Too Long!")
     .required("Required"),
   author: Yup.string()
     .min(1, "Too Short!")

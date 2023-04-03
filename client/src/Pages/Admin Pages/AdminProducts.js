@@ -1,19 +1,38 @@
 import React, { useState } from "react";
-import TagsSearchBar from "./../../components/TagsSearchBar";
 import AdminProductsList from "../../components/Admin Components/AdminProductsList";
 import AdminAddNewProduct from "../../components/Admin Components/AdminAddNewProduct";
 import ProductModal from "../../components/ProductModal";
+import TagsSeTagsAdminSearchBar from "./../../components/Admin Components/TagsAdminSearchBar";
+import { useLazyGetProductsByTagsQuery } from "../../redux/store";
 
 const AdminProducts = () => {
   const [addNewProduct, setAddNewProduct] = useState();
+  const [showProductsByTags, setshowProductsByTags] = useState(false);
+  const [trigger, { data: findedProductsByTags, isSuccess }] =
+    useLazyGetProductsByTagsQuery();
 
   const closeModalHandler = () => {
     setAddNewProduct(false);
   };
+
+  const searchByTagsHandler = (tags) => {
+    setshowProductsByTags(true);
+    trigger(tags).then((res) => {
+      console.log(res.status);
+    });
+  };
+
+  const clearSearchHandler = () => {
+    setshowProductsByTags(false);
+  };
+
   return (
     <div className="products-wrapper">
       <div className="products-sidebar">
-        <TagsSearchBar />
+        <TagsSeTagsAdminSearchBar
+          onSearch={searchByTagsHandler}
+          onClearSearch={clearSearchHandler}
+        />
       </div>
       <div className="products-content">
         <button
@@ -22,7 +41,11 @@ const AdminProducts = () => {
         >
           Add new product
         </button>
-        <AdminProductsList />
+        {showProductsByTags ? (
+          <AdminProductsList productsByTags={findedProductsByTags} />
+        ) : (
+          <AdminProductsList productsByTags={false} />
+        )}
       </div>
       {addNewProduct && (
         <ProductModal wrapperId="editProductModal">

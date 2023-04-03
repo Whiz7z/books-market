@@ -150,12 +150,10 @@ html {
   background-color: rgba(0, 255, 157, 0.8);
 }
 
-.menu-list_item {
-}
-
 .products-wrapper {
   display: grid;
   grid-template-columns: minmax(5px, 50px) 1fr 5fr minmax(5px, 50px);
+
   justify-content: center;
   column-gap: 5px;
   min-height: 600px;
@@ -166,8 +164,11 @@ html {
 .products-sidebar {
   grid-column: 2/3;
   justify-items: center;
-
+  align-self: start;
   border: 2px solid black;
+  position: sticky;
+  top: 25%;
+  padding: 0 0 40px 0;
 }
 
 .products-content {
@@ -176,15 +177,41 @@ html {
   display: grid;
 }
 
+.products_goback-btn {
+  background-color: transparent;
+  border: 2px solid black;
+  height: 40px;
+  padding: 5px 10px;
+  transition: 200ms;
+  justify-self: start;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.products_goback-btn:hover {
+  background-color: var(--danger);
+  color: white;
+  transition: 300ms;
+}
+
+.products-title {
+  width: 100%;
+  text-align: center;
+}
+
+.categories-title {
+}
+
 .products-title,
 .categories-title {
-  margin-top: 30px;
+  margin-top: 40px;
   width: 100%;
   text-align: center;
 }
 
 .products_title-notfound {
   text-align: center;
+  grid-row: 2/3;
 }
 
 .product_list-container {
@@ -198,6 +225,7 @@ html {
   margin-bottom: 100px;
   width: 100%;
   padding: 0 40px;
+  position: sticky;
 }
 
 .product_list-item {
@@ -208,7 +236,7 @@ html {
   padding-bottom: 20px;
   background-color: transparent;
   border-radius: 1px;
-  transition: 200ms;
+  transition: 2200ms;
   row-gap: 20px;
   cursor: pointer;
 }
@@ -227,19 +255,22 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   column-gap: 10px;
+  margin-bottom: 50px;
   row-gap: 5px;
 }
 
 .categories_list-item {
   height: 30px;
-  line-height: 30px;
+  line-height: 28px;
   color: white;
   padding: 0 10px;
   transition: 300ms;
+
+  border: 2px solid transparent;
 }
 
 .categories_list-item:hover {
-  background-color: aqua;
+  background-color: white;
   cursor: pointer;
 }
 
@@ -276,6 +307,7 @@ html {
   cursor: pointer;
   margin: 0 auto;
   margin-top: 20px;
+  margin-bottom: 90px;
 }
 
 .categories_clear_tags-btn:hover {
