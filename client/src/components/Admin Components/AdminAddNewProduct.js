@@ -50,9 +50,7 @@ const AdminAddNewProduct = ({ onCloseModal }) => {
       const resp = await getAllTags(
         JSON.parse(localStorage.getItem("userInfo")).token
       );
-
       console.log(resp);
-
       setTags(resp);
     };
 

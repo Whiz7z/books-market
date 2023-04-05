@@ -43,6 +43,17 @@ const productsApi = createApi({
           };
         },
       }),
+      getProductById: builder.query({
+        query: (id) => {
+          return {
+            url: "/api/products/byId",
+            params: {
+              id: id,
+            },
+            method: "GET",
+          };
+        },
+      }),
       getCategoriesAndPreview: builder.query({
         query: () => {
           return {
@@ -113,5 +124,6 @@ export const {
   useGetCategoriesAndPreviewQuery,
   useGetAllTagsQuery,
   useLazyGetProductsByTagsQuery,
+  useGetProductByIdQuery,
 } = productsApi;
 export { productsApi };

@@ -51,7 +51,9 @@ const Menu = () => {
           <li className="menu-list_item">
             <NavLink
               to="main"
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              style={({ isActive }) =>
+                isActive | (location.pathname === "/") ? activeStyle : undefined
+              }
             >
               main.
             </NavLink>
@@ -68,11 +70,7 @@ const Menu = () => {
             <li className="menu-list_item">
               <NavLink
                 to="profile"
-                style={({ isActive }) =>
-                  isActive | (location.pathname === "/")
-                    ? activeStyle
-                    : undefined
-                }
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 profile.
               </NavLink>

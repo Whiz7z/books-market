@@ -12,6 +12,7 @@ const AdminProducts = () => {
     useLazyGetProductsByTagsQuery();
 
   const closeModalHandler = () => {
+    document.getElementsByTagName("body").classList += "modal-open";
     setAddNewProduct(false);
   };
 

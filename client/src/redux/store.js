@@ -35,6 +35,7 @@ export {
   useGetCategoriesAndPreviewQuery,
   useGetAllTagsQuery,
   useLazyGetProductsByTagsQuery,
+  useGetProductByIdQuery,
 } from "./apis/productsApi";
 
 export {

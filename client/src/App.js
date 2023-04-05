@@ -10,6 +10,7 @@ import RegisterPage from "./Pages/RegisterPage";
 import CheckOutPage from "./Pages/CheckOutPage";
 import StripePage from "./Pages/StripePage";
 import MainPage from "./Pages/MainPage";
+import ProductPage from "./Pages/ProductPage";
 function App() {
   return (
     <div>
@@ -34,6 +35,13 @@ function App() {
         <Route path="/checkout" element={<CheckOutPage />} exact></Route>
 
         <Route path="/payment" element={<StripePage />} exact></Route>
+
+        <Route
+          path="/products/category/:category/:id"
+          element={<ProductPage />}
+          exact
+        ></Route>
+        <Route path="/products/:id" element={<ProductPage />} exact></Route>
       </Routes>
     </div>
   );

@@ -70,9 +70,7 @@ const ProductsPage = () => {
           exact
           path="category/:category"
           element={
-            <div className="products-content">
-              <ProductsList searchByCategory={true} clearSearch={clearSearch} />
-            </div>
+            <ProductsList searchByCategory={true} clearSearch={clearSearch} />
           }
         ></Route>
       </Routes>

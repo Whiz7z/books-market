@@ -1,3 +1,8 @@
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+}
+
 .edit_product_modal-container {
   position: fixed;
   width: 100%;
@@ -9,11 +14,14 @@
   display: grid;
   grid-template-columns: minmax(0, 300px) 1fr minmax(0, 300px);
   overflow: scroll;
+  padding-top: 100px;
 }
 
 .edit_product_form-container {
   width: 600px;
   min-height: 600px;
+  margin-top: 400px;
+
   background-color: var(--main);
   grid-column: 2/3;
   align-self: center;

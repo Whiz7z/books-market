@@ -25,6 +25,21 @@ const getProducts = asyncHandler(async (req, res) => {
   }
 });
 
+const getProductById = asyncHandler(async (req, res) => {
+  const id = req.query.id;
+
+  if (id.trim("").length > 0) {
+    try {
+      const product = await Product.findById(id);
+      console.log(product);
+      res.json(product);
+    } catch (err) {}
+  } else {
+    res.status(404).json("Product not found");
+    throw new Error("Product not found.");
+  }
+});
+
 const getProductByTags = asyncHandler(async (req, res) => {
   if (req.query.tags.trim("").length > 0) {
     const tags = req.query.tags.split(",");
@@ -67,8 +82,16 @@ const getCategoriesAndPreview = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
   //console.log(req.body);
-  const { id, title, description, price, category, stock, isPhotoChanged } =
-    req.body.product;
+  const {
+    id,
+    title,
+    description,
+    price,
+    category,
+    stock,
+    isPhotoChanged,
+    tags,
+  } = req.body.product;
 
   const _id = mongoose.Types.ObjectId(id);
 
@@ -79,7 +102,10 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.price = price;
     product.category = category;
     product.stock = stock;
-
+    product.tags = tags.filter(
+      (value, index, array) =>
+        array.indexOf(value) === index && value.trim().length > 0
+    );
     const updatedProduct = await product.save();
     console.log("updated product", updatedProduct);
 
@@ -180,6 +206,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 productRoutes.route("/").get(getProducts);
 productRoutes.route("/byTags").get(getProductByTags);
+productRoutes.route("/byId").get(getProductById);
 productRoutes.route("/categories").get(getCategoriesAndPreview);
 productRoutes.route("/").put(protectRoute, admin, updateProduct);
 productRoutes.route("/").post(protectRoute, admin, createProduct);

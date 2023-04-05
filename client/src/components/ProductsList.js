@@ -20,7 +20,8 @@ const ProductsList = ({ products, searchByCategory, clearSearch }) => {
   const { tags, setTags, resetTags } = useSelectedTags((state) => state);
   const dispatch = useDispatch();
 
-  const addToCartHandler = (product) => {
+  const addToCartHandler = (e, product) => {
+    e.stopPropagation();
     dispatch(addToCart(product));
   };
 
@@ -33,7 +34,11 @@ const ProductsList = ({ products, searchByCategory, clearSearch }) => {
     }
   };
 
-  console.log(category);
+  const moveToProductPage = (productId) => {
+    // e.stopPropagation();
+    navigate(`${productId}`);
+  };
+
   return (
     <>
       <div className="products-content">
@@ -44,7 +49,11 @@ const ProductsList = ({ products, searchByCategory, clearSearch }) => {
         {!searchByCategory && products && products.length > 0 ? (
           <div className="product_list-container">
             {products.map((product) => (
-              <div key={product._id} className="product_list-item">
+              <div
+                key={product._id}
+                className="product_list-item"
+                onClick={() => moveToProductPage(product._id)}
+              >
                 <img
                   src={`http://localhost:5000/images/${product.imagePath}`}
                   alt="product"
@@ -69,7 +78,11 @@ const ProductsList = ({ products, searchByCategory, clearSearch }) => {
         ) : searchByCategory && data ? (
           <div className="product_list-container">
             {data.map((product) => (
-              <div key={product._id} className="product_list-item">
+              <div
+                key={product._id}
+                className="product_list-item"
+                onClick={() => moveToProductPage(product._id)}
+              >
                 <img
                   src={`http://localhost:5000/images/${product.imagePath}`}
                   alt="product"
@@ -82,7 +95,7 @@ const ProductsList = ({ products, searchByCategory, clearSearch }) => {
                 <div className="product-add-to-cart">
                   <button
                     className="addtocart-btn"
-                    onClick={() => addToCartHandler(product)}
+                    onClick={(e) => addToCartHandler(e, product)}
                   >
                     Add to cart
                   </button>
