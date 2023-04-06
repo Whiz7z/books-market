@@ -34,6 +34,9 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
     if (data) {
       setCategories([...new Set(data.map((product) => product.category))]);
     }
+    if (tags) {
+      onSearch(tags);
+    }
   }, [data]);
 
   const chooseCategoryHandler = (category) => {

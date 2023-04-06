@@ -44,7 +44,7 @@ const ProductsList = ({ products, searchByCategory, clearSearch }) => {
       <div className="products-content">
         <h2 className="products-title">Products</h2>
         <button onClick={goBackHandler} className="products_goback-btn">
-          back to collections
+          Back to collections
         </button>
         {!searchByCategory && products && products.length > 0 ? (
           <div className="product_list-container">

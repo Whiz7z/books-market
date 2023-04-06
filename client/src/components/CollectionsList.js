@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useGetCategoriesAndPreviewQuery } from "../redux/store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CollectionsList = () => {
+  const navigate = useNavigate();
   const {
     data: dataCategories,
     error: errorCategories,
@@ -20,7 +21,11 @@ const CollectionsList = () => {
       <div className="product_list-container">
         {dataCategories &&
           dataCategories.unique.map((el) => (
-            <div key={el.category} className="product_categories-container">
+            <div
+              key={el.category}
+              className="product_categories-container"
+              onClick={() => navigate(`category/${el.category}`)}
+            >
               <div className="categories_item_image-container">
                 <img
                   src={`http://localhost:5000/images/${el.imagePath}`}

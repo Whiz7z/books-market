@@ -368,6 +368,7 @@ html {
   background-color: transparent;
   transition: 500ms;
   padding: 20px;
+  cursor: pointer;
 }
 
 .categories_item_image-container {

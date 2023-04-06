@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGetProductByIdQuery } from "../redux/store";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/store";
+import { useSelectedTags } from "../components/zustand/store";
 import "../styles/productPage.css";
 
 const ProductPage = () => {
+  const { setTags } = useSelectedTags((state) => state);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
   const { data: product, isError } = useGetProductByIdQuery(id);
@@ -13,8 +16,16 @@ const ProductPage = () => {
   const addToCartHandler = (product) => {
     dispatch(addToCart(product));
   };
+  const clickTagHandler = (tag) => {
+    setTags([tag]);
+    navigate("/products");
+  };
+
   return (
     <div className="product-wrapper">
+      <button className="go-back-btn" onClick={() => navigate(-1)}>
+        Go Back
+      </button>
       {product && (
         <div className="product-content">
           <div className="product_image-block">
@@ -36,7 +47,13 @@ const ProductPage = () => {
             <div className="product_tags">
               <h4>Tags:</h4>
               {product.tags.map((tag) => (
-                <div key={tag} className="product_tag-item">
+                <div
+                  key={tag}
+                  className="product_tag-item"
+                  onClick={() => {
+                    clickTagHandler(tag);
+                  }}
+                >
                   {tag}
                 </div>
               ))}
@@ -45,7 +62,7 @@ const ProductPage = () => {
           <div className="product_add-to-cart">
             <h4 className="product_add-to-cart-price">${product.price}</h4>
             <button
-              className="product_add-to_cart-btn"
+              className="product_page-btn"
               onClick={() => addToCartHandler(product)}
             >
               Add to cart

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Menu from "../components/Menu";
 import TagsSearchBar from "../components/TagsSearchBar";
 import ProductsList from "../components/ProductsList";
