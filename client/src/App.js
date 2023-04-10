@@ -11,6 +11,7 @@ import CheckOutPage from "./Pages/CheckOutPage";
 import StripePage from "./Pages/StripePage";
 import MainPage from "./Pages/MainPage";
 import ProductPage from "./Pages/ProductPage";
+import ProtectedRoutes from "./components/Admin Components/ProtectedRoutes";
 function App() {
   return (
     <div>
@@ -21,20 +22,25 @@ function App() {
         <Route path="/main" element={<MainPage />} exact></Route>
 
         <Route path="/products/*" element={<ProductsPage />} exact></Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/profile/*" element={<ProfilePage />} exact></Route>
 
-        <Route path="/profile/*" element={<ProfilePage />} exact></Route>
+          <Route
+            path="/adminpanel/*"
+            element={<AdminPanelPage />}
+            exact
+          ></Route>
 
-        <Route path="/adminpanel/*" element={<AdminPanelPage />} exact></Route>
+          <Route path="/cart" element={<CartPage />} exact></Route>
 
-        <Route path="/cart" element={<CartPage />} exact></Route>
+          <Route path="/checkout" element={<CheckOutPage />} exact></Route>
+
+          <Route path="/payment" element={<StripePage />} exact></Route>
+        </Route>
 
         <Route path="/login" element={<LoginPage />} exact></Route>
 
         <Route path="/registration" element={<RegisterPage />} exact></Route>
-
-        <Route path="/checkout" element={<CheckOutPage />} exact></Route>
-
-        <Route path="/payment" element={<StripePage />} exact></Route>
 
         <Route
           path={"/products/category/:category/:id"}

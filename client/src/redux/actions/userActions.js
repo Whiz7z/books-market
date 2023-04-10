@@ -132,3 +132,15 @@ export const changePassword =
       );
     }
   };
+
+export const sendMessage = async ({ email, message }) => {
+  try {
+    const { data } = await axios.post("/api/users/sendContactMessage", {
+      email,
+      message,
+    });
+    console.log(data);
+
+    return data;
+  } catch (errr) {}
+};

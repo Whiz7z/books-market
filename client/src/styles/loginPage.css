@@ -39,18 +39,40 @@
 
 .login_form-btn {
   width: 200px;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 38px;
   justify-self: center;
-  background-color: var(--btnhover);
+  background-color: transparent;
   cursor: pointer;
   color: rgb(0, 0, 0);
   justify-self: center;
+  transition: 200ms;
+}
+
+.login_btn-switch {
+  width: 200px;
+  height: 40px;
+  line-height: 38px;
+  justify-self: center;
+  background-color: transparent;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  justify-self: center;
+  transition: 200ms;
+  color: var(--text);
+}
+
+.login_btn-switch:hover {
+  background-color: var(--danger);
+  border-color: transparent;
+  color: white;
 }
 
 .login_form-btn:hover {
-  background-color: rgb(0, 255, 157);
-  transition: 0.4s;
+  background-color: var(--btnhover);
+  color: white;
+  transition: 0.3s;
+  border-color: transparent;
 }
 
 .login_form-field-container {

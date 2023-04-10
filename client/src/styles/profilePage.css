@@ -57,6 +57,7 @@
 .myInfo_save-changes-btn:hover {
   background-color: var(--btnhover);
   transition: 0.4s;
+  border-color: transparent;
 }
 
 .myInfo_change-password-form-container {

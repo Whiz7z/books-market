@@ -7,9 +7,21 @@ import { createGlobalStyle } from "styled-components";
 
 const AdminOrderItem = ({ order }) => {
   const [changeStatus, results] = useUpdateOrderStatusMutation();
+  const createdAt = new Date(order.createdAt).toISOString().slice(0, 10);
   return (
-    <div className="order_item-container">
+    <div
+      className={`order_item-container-admin ${
+        order.status === "Prepearing"
+          ? "status-prepearing"
+          : order.status === "Dispatched"
+          ? "status-dispatched"
+          : order.status === "Canceled"
+          ? "status-canceled"
+          : null
+      }`}
+    >
       <div className="order-id">{order._id}</div>
+      <div className="order-date">{createdAt}</div>
       <div className="order-titles">
         {order.orderItems.map((item) => (
           <p key={item.title}>
@@ -22,7 +34,7 @@ const AdminOrderItem = ({ order }) => {
         <p>{`User Id - ${order.user._id}`}</p>
       </div>
       <div className="order-total-price">
-        <p>Total price - ${order.totalPrice}</p>
+        <p>${order.totalPrice.toFixed(2)}</p>
       </div>
       <div className="order_change_status-container">
         <p>Status - {order.status}</p>

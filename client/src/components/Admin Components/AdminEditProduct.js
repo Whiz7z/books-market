@@ -138,7 +138,11 @@ const AdminEditProduct = ({ product, onCloseModal }) => {
                   {`Description  (current - ${product.description})`}
                 </label>
                 <div className="login_form-field-container">
-                  <Field name="description" className="edit-field" />
+                  <Field
+                    as="textarea"
+                    name="description"
+                    className="edit-field"
+                  />
                   {errors.description && touched.description ? (
                     <div className="form-error">{errors.description}</div>
                   ) : null}
@@ -208,7 +212,7 @@ const AdminEditProduct = ({ product, onCloseModal }) => {
                 </div>
                 <p className="login_form-label">{`Add more`}</p>
                 <div className="login_form-field-container">
-                  <Field as="textarea" name="tags" className="edit-field" />
+                  <Field name="tags" className="edit-field" />
                   {errors.tags && touched.tags ? (
                     <div className="form-error">{errors.tags}</div>
                   ) : null}

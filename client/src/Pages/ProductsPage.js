@@ -45,9 +45,11 @@ const ProductsPage = ({ props }) => {
 
   const searchHandler = (tags) => {
     setShowProductList(false);
-    trigger(tags).then((res) => {
-      console.log(res.status);
-    });
+    if (tags.length > 0) {
+      trigger(tags).then((res) => {
+        console.log(res.status);
+      });
+    }
   };
 
   const clearSearch = () => {

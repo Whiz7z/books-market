@@ -9,6 +9,8 @@ const OrderItem = ({ order }) => {
   const closeModalHandler = () => {
     setCancelOrder(false);
   };
+  const createdAt = new Date(order.createdAt).toISOString().slice(0, 10);
+
   return (
     <div
       className={`order_item-container ${
@@ -22,6 +24,7 @@ const OrderItem = ({ order }) => {
       }`}
     >
       <div className="order-id">{order._id}</div>
+      <div className="order-date">{createdAt}</div>
       <div className="order-titles">
         {order.orderItems.map((item) => (
           <p key={item.title}>
@@ -30,7 +33,7 @@ const OrderItem = ({ order }) => {
         ))}
       </div>
       <div className="order-total-price">
-        <p>Total price - ${order.totalPrice}</p>
+        <p>${order.totalPrice.toFixed(2)}</p>
       </div>
       <div className="order_change_status-container">
         <p>Status - {order.status}</p>

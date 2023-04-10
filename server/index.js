@@ -11,6 +11,7 @@ import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import tagRoutes from "./routes/tagRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
 import bodyParser from "body-parser";
 import fs from "fs";
 // Schemas
@@ -48,6 +49,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/tags", tagRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.use("/images", express.static("productImages"));
 

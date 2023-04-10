@@ -14,7 +14,8 @@ const Orders = () => {
         <h2 className="order-title">Orders</h2>
         <div className="order_list-container">
           <div className="order-main-titles">
-            <div className="order-id">Order Id</div>
+            <div className="order-title-id">Order Id</div>
+            <div className="order-title-date">Date</div>
             <div className="order-items">Items</div>
 
             <div className="order-price">Price</div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useLocation, Link } from "react-router-dom";
 import "../styles/main.css";
 import styled from "styled-components";
-import { userLogout, removeAllItems } from "../redux/store";
+import { userLogout, removeAllItems, ordersApi } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { CgShoppingCart } from "react-icons/cg";
 import IconShoppingCart from "./Icons/IconShoppingCart";
@@ -23,6 +23,7 @@ const Menu = () => {
     localStorage.removeItem("userInfo");
     dispatch(userLogout());
     dispatch(removeAllItems());
+    dispatch(ordersApi.util.resetApiState());
   };
 
   return (

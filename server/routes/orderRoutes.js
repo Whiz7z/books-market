@@ -101,7 +101,12 @@ const cancelOrder = asyncHandler(async (req, res) => {
 
   const order = await Order.findById(_id);
   console.log(order);
-  if (order && !status.trim() == "" && order.status !== "Canceled") {
+  if (
+    order &&
+    !status.trim() == "" &&
+    order.status !== "Canceled" &&
+    order.status !== "Delivered"
+  ) {
     order.status = "Canceled";
     const updatedOrder = await order.save();
     res.status(200).json(updatedOrder);

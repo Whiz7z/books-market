@@ -2,14 +2,14 @@
   width: 100%;
   margin-top: 200px;
   display: grid;
-  grid-template-columns: minmax(0px, 400px) 1fr minmax(0px, 400px);
+  grid-template-columns: 1fr;
+  justify-content: center;
 }
 
 .main-page-banner {
   width: 1150px;
   height: 550px;
   background-color: var(--banner);
-  grid-column: 2/3;
   justify-self: center;
   display: grid;
 }

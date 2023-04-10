@@ -69,7 +69,7 @@ const SingIn = () => {
                 Sign In
               </button>
               <Link to="/registration">
-                <button as={Link} type="button" className="login_form-btn">
+                <button as={Link} type="button" className="login_btn-switch">
                   Switch to Sign Up
                 </button>
               </Link>

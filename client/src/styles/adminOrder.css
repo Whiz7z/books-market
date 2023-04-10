@@ -23,7 +23,18 @@
 .order-main-titles {
   width: 100%;
   display: grid;
-  grid-template-columns: 250px 2fr repeat(2, 1fr);
+  grid-template-columns: 250px 150px 2fr repeat(2, 1fr);
+  column-gap: 15px;
+  justify-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid black;
+}
+
+.order-main-titles-admin {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 250px 100px 3fr 2fr repeat(2, 1fr);
+  column-gap: 15px;
   justify-items: center;
   padding-bottom: 15px;
   border-bottom: 2px solid black;
@@ -33,7 +44,23 @@
   display: grid;
   min-height: 140px;
   padding: 5px 0;
-  grid-template-columns: 250px 2fr repeat(2, 1fr);
+  grid-template-columns: 250px 150px 2fr repeat(2, 1fr);
+  column-gap: 15px;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 2px solid black;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+.order_item-container-admin {
+  display: grid;
+  min-height: 140px;
+  padding: 5px 0;
+  grid-template-columns: 250px 100px 3fr 2fr repeat(2, 1fr);
+  column-gap: 15px;
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -49,6 +76,10 @@
 }
 
 .order-id {
+  justify-self: center;
+}
+
+.order-date {
 }
 
 .order-titles {
@@ -60,6 +91,8 @@
 }
 
 .order-total-price {
+  justify-self: center;
+  text-align: center;
 }
 
 .order_change_status-container {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/mainPage.css";
+import Contact from "../components/Profile/Contact";
 
 const MainPage = () => {
   return (
@@ -11,6 +12,7 @@ const MainPage = () => {
           Go to products
         </Link>
       </div>
+      <Contact />
     </div>
   );
 };

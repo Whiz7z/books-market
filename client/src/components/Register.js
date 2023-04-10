@@ -81,7 +81,7 @@ const Register = () => {
                 Register
               </button>
               <Link to="/login">
-                <button as={Link} type="button" className="login_form-btn">
+                <button as={Link} type="button" className="login_btn-switch">
                   Switch to Sign In
                 </button>
               </Link>

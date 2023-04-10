@@ -16,7 +16,7 @@
   display: grid;
   grid-column: 2/3;
   justify-self: center;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 40px;
   justify-items: center;
 }

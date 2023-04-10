@@ -11,6 +11,7 @@ import {
 import AdminProducts from "./Admin Pages/AdminProducts";
 import AdminOrders from "./Admin Pages/AdminOrders";
 import AdminUsers from "./Admin Pages/AdminUsers";
+import AdminMessages from "./Admin Pages/AdminMessages";
 import "../styles/adminPanel.css";
 
 const AdminPanelPage = () => {
@@ -61,6 +62,13 @@ const AdminPanelPage = () => {
           >
             Users
           </NavLink>
+
+          <NavLink
+            to="adminMessages"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            Messages
+          </NavLink>
         </ul>
       </div>
       <Routes>
@@ -71,6 +79,8 @@ const AdminPanelPage = () => {
         <Route path="adminOrders" element={<AdminOrders />} exact></Route>
 
         <Route path="adminUsers" element={<AdminUsers />}></Route>
+
+        <Route path="adminMessages" element={<AdminMessages />}></Route>
       </Routes>
     </>
   );

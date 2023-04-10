@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../models/User.js";
+import Message from "../models/Message.js";
 import asyncHandler from "express-async-handler";
 import { admin, protectRoute } from "../middleware/authMiddleware.js";
 
@@ -117,10 +118,28 @@ const changePassword = asyncHandler(async (req, res) => {
   }
 });
 
+const sendMessage = asyncHandler(async (req, res) => {
+  console.log(req.body);
+
+  if (req.body) {
+    const message = await Message.create({
+      email: req.body.email,
+      message: req.body.message,
+    });
+
+    console.log(message);
+    res.json(message);
+  } else {
+    res.status(404);
+    throw new Error("Could not send the message");
+  }
+});
+
 userRoutes.route("/login").post(loginUser);
 userRoutes.route("/register").post(registerUser);
 userRoutes.route("/admin").get(protectRoute, admin, getAdmin);
 userRoutes.route("/changeinfo").put(protectRoute, changeInfo);
 userRoutes.route("/changepassword").put(protectRoute, changePassword);
+userRoutes.route("/sendContactMessage").post(sendMessage);
 
 export default userRoutes;

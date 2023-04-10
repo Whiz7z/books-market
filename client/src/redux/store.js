@@ -6,6 +6,7 @@ import { productsApi } from "./apis/productsApi";
 import { ordersApi } from "./apis/ordersApi";
 import { userReducer } from "./slices/userSlice";
 import { orderReducer } from "./slices/orderSlice";
+import { messagesApi } from "./apis/messagesApi";
 
 export const store = configureStore({
   reducer: {
@@ -15,11 +16,13 @@ export const store = configureStore({
     order: orderReducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
+    [messagesApi.reducerPath]: messagesApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware()
       .concat(ordersApi.middleware)
-      .concat(productsApi.middleware);
+      .concat(productsApi.middleware)
+      .concat(messagesApi.middleware);
   },
 });
 
@@ -44,3 +47,7 @@ export {
   useUpdateOrderStatusMutation,
   useCancelOrderMutation,
 } from "./apis/ordersApi";
+
+export { useGetAllMessagesQuery } from "./apis/messagesApi";
+
+export { ordersApi } from "./apis/ordersApi";
