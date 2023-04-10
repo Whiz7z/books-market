@@ -10,6 +10,10 @@
   --tags: #6a603c;
   --danger: #c43d34;
   --danger2: #af1b3f;
+
+  --btnhoveropacity: rgba(234, 184, 57, 0.2);
+  --thirdopacity: rgba(71, 150, 160, 0.2);
+  --dangeropacity: rgba(196, 61, 52, 0.3);
 }
 * {
   padding: 0;
@@ -122,10 +126,9 @@ html {
 }
 
 .shopping_cart-btn {
-  width: 120px;
+  width: 40px;
   height: 40px;
   background-color: transparent;
-  border: 2px dashed black;
   cursor: pointer;
   line-height: 40px;
   text-align: center;
@@ -134,20 +137,11 @@ html {
 .shopping_cart-btn-quantity {
   width: 30px;
   height: 40px;
-  background-color: rgb(255, 166, 0);
-  border: 2px dashed black;
+  font-size: 20px;
+  font-weight: bold;
   border-left: none;
   line-height: 40px;
   text-align: center;
-}
-
-.shopping_cart-btn-quantity:hover {
-  background-color: rgb(0, 255, 157);
-  transition: 1500ms;
-}
-
-.shopping_cart-btn:hover {
-  background-color: rgba(0, 255, 157, 0.8);
 }
 
 .products-wrapper {
@@ -167,7 +161,17 @@ html {
   align-self: start;
   border: 2px solid black;
   position: sticky;
-  top: 25%;
+  top: 5%;
+  padding: 0 0 40px 0;
+}
+
+.products-admin-sidebar {
+  grid-column: 2/3;
+  justify-items: center;
+  align-self: start;
+  border: 2px solid black;
+  position: sticky;
+  top: 5%;
   padding: 0 0 40px 0;
 }
 

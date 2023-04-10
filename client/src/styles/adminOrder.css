@@ -1,10 +1,10 @@
 .orders-wrapper {
   margin-top: 60px;
+  padding-bottom: 100px;
 }
 
 .order_list-page {
   display: grid;
-  border: 2px solid black;
   margin: 0 20px;
 }
 
@@ -14,31 +14,45 @@
 }
 
 .order_list-container {
+  justify-self: center;
   display: grid;
-  row-gap: 20px;
+  min-width: 1400px;
   margin: 50px 20px;
+}
+
+.order-main-titles {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 250px 2fr repeat(2, 1fr);
+  justify-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid black;
 }
 
 .order_item-container {
   display: grid;
-  height: 140px;
-  grid-template-columns: 250px 2fr 2fr repeat(2, 1fr);
+  min-height: 140px;
+  padding: 5px 0;
+  grid-template-columns: 250px 2fr repeat(2, 1fr);
   justify-items: center;
   justify-content: center;
   align-items: center;
 
-  border: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
 }
 
 .order_item-container:hover {
-  background-color: rgb(222, 222, 222);
+  border-left: 2px solid black;
+  border-right: 2px solid black;
 }
 
 .order-id {
 }
 
 .order-titles {
-  justify-self: left;
+  justify-self: start;
 }
 
 .order-user-id-gmails {
@@ -77,8 +91,29 @@
 }
 
 .order_cancel-btn {
-  background-color: red;
+  background-color: transparent;
   padding: 10px 10px;
   border: 2px solid black;
   cursor: pointer;
+  color: black;
+  transition: 200ms;
+}
+
+.order_cancel-btn:hover {
+  border-color: transparent;
+  background-color: var(--danger);
+  color: white;
+  transition: 300ms;
+}
+
+.status-prepearing {
+  background-color: rgba(234, 184, 57, 0.3);
+}
+
+.status-dispatched {
+  background-color: rgba(71, 150, 160, 0.3);
+}
+
+.status-canceled {
+  background-color: rgba(196, 61, 52, 0.3);
 }

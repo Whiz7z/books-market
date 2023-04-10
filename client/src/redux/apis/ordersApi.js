@@ -26,6 +26,9 @@ const ordersApi = createApi({
         },
       }),
       getMyOrders: builder.query({
+        providesTags: (result, error) => {
+          return [{ type: "Order Updated" }];
+        },
         query: () => {
           return {
             url: "/api/orders/myorders",
@@ -47,6 +50,20 @@ const ordersApi = createApi({
           };
         },
       }),
+      cancelOrder: builder.mutation({
+        invalidatesTags: (result, error) => {
+          return [{ type: "Order Updated" }];
+        },
+        query: (payload) => {
+          return {
+            url: "/api/orders/cancel",
+            method: "PUT",
+            body: {
+              payload,
+            },
+          };
+        },
+      }),
     };
   },
 });
@@ -55,5 +72,6 @@ export const {
   useGetAllOrdersQuery,
   useUpdateOrderStatusMutation,
   useGetMyOrdersQuery,
+  useCancelOrderMutation,
 } = ordersApi;
 export { ordersApi };

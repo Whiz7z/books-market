@@ -38,6 +38,7 @@
   grid-row: 2/3;
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
+  margin-bottom: 200px;
 }
 
 .product_image-block {
@@ -57,6 +58,7 @@
   display: grid;
   align-content: start;
   row-gap: 25px;
+  align-content: center;
 }
 
 .product_info-title {

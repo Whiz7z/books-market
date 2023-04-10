@@ -20,12 +20,24 @@ const cartSlice = createSlice({
 
         state.items[index].quantity++;
         state.totalItemsQuantity++;
-        state.totalCost += action.payload.price;
+
+        let calculatedTotalCost = 0;
+        for (let i = 0; i < state.items.length; i++) {
+          calculatedTotalCost +=
+            state.items[i].item.price * state.items[i].quantity;
+        }
+
+        state.totalCost = parseFloat(calculatedTotalCost.toFixed(2));
       } else {
         state.items = [...state.items, { item: action.payload, quantity: 1 }];
         state.totalItemsQuantity++;
-        state.totalCost += action.payload.price;
+        let calculatedTotalCost = 0;
+        for (let i = 0; i < state.items.length; i++) {
+          calculatedTotalCost +=
+            state.items[i].item.price * state.items[i].quantity;
+        }
 
+        state.totalCost = parseFloat(calculatedTotalCost.toFixed(2));
         localStorage.setItem("cartItems", JSON.stringify(state.items));
         localStorage.setItem("cartTotalCost", JSON.stringify(state.totalCost));
         localStorage.setItem(
@@ -56,7 +68,7 @@ const cartSlice = createSlice({
           calculatedTotalItemsQuantity += state.items[i].quantity;
         }
         state.totalItemsQuantity = calculatedTotalItemsQuantity;
-        state.totalCost = calculatedTotalCost;
+        state.totalCost = parseFloat(calculatedTotalCost.toFixed(2));
 
         localStorage.setItem("cartTotalCost", JSON.stringify(state.totalCost));
         localStorage.setItem(
@@ -77,7 +89,7 @@ const cartSlice = createSlice({
           calculatedTotalItemsQuantity += state.items[i].quantity;
         }
         state.totalItemsQuantity = calculatedTotalItemsQuantity;
-        state.totalCost = calculatedTotalCost;
+        state.totalCost = parseFloat(calculatedTotalCost.toFixed(2));
 
         localStorage.setItem("cartTotalCost", JSON.stringify(state.totalCost));
         localStorage.setItem(
@@ -98,7 +110,7 @@ const cartSlice = createSlice({
           calculatedTotalItemsQuantity += state.items[i].quantity;
         }
         state.totalItemsQuantity = calculatedTotalItemsQuantity;
-        state.totalCost = calculatedTotalCost;
+        state.totalCost = parseFloat(calculatedTotalCost.toFixed(2));
 
         localStorage.setItem("cartTotalCost", JSON.stringify(state.totalCost));
         localStorage.setItem(
@@ -119,7 +131,7 @@ const cartSlice = createSlice({
           calculatedTotalItemsQuantity += state.items[i].quantity;
         }
         state.totalItemsQuantity = calculatedTotalItemsQuantity;
-        state.totalCost = calculatedTotalCost;
+        state.totalCost = parseFloat(calculatedTotalCost.toFixed(2));
 
         localStorage.setItem("cartTotalCost", JSON.stringify(state.totalCost));
         localStorage.setItem(
@@ -136,7 +148,8 @@ const cartSlice = createSlice({
       );
       state.totalItemsQuantity -= state.items[index].quantity;
       state.totalCost -=
-        state.items[index].quantity * state.items[index].item.price;
+        state.items[index].quantity *
+        parseFloat(state.items[index].item.price.toFixed(2));
       state.items.splice(index, 1);
 
       localStorage.setItem("cartTotalCost", JSON.stringify(state.totalCost));

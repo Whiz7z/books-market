@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useGetProductByIdQuery } from "../redux/store";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/store";
@@ -16,14 +16,18 @@ const ProductPage = () => {
   const addToCartHandler = (product) => {
     dispatch(addToCart(product));
   };
-  const clickTagHandler = (tag) => {
+  const clickTagHandler = (e, tag) => {
+    console.log(e.button);
     setTags([tag]);
-    navigate("/products");
+    // navigate("/products");
   };
 
   return (
     <div className="product-wrapper">
-      <button className="go-back-btn" onClick={() => navigate(-1)}>
+      <button
+        className="go-back-btn"
+        onClick={() => navigate(-1, { replace: true })}
+      >
         Go Back
       </button>
       {product && (
@@ -47,15 +51,16 @@ const ProductPage = () => {
             <div className="product_tags">
               <h4>Tags:</h4>
               {product.tags.map((tag) => (
-                <div
-                  key={tag}
-                  className="product_tag-item"
-                  onClick={() => {
-                    clickTagHandler(tag);
-                  }}
-                >
-                  {tag}
-                </div>
+                <Link to={`/products/tags/${tag}`} key={tag}>
+                  <div
+                    className="product_tag-item"
+                    onClick={(e) => {
+                      clickTagHandler(e, tag);
+                    }}
+                  >
+                    {tag}
+                  </div>
+                </Link>
               ))}
             </div>
           </div>

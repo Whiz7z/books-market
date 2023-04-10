@@ -17,8 +17,10 @@ const calculateTotalPrice = (items) => {
 
 const createPayment = async (req, res) => {
   let { items } = req.body;
-  console.log(items);
-  const totalPrice = calculateTotalPrice(items);
+  //console.log(items);
+  const totalPrice = parseFloat(calculateTotalPrice(items).toFixed(2));
+
+  console.log("total price", totalPrice);
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalPrice * 100,

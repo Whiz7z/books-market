@@ -29,7 +29,7 @@ const AdminProducts = () => {
 
   return (
     <div className="products-wrapper">
-      <div className="products-sidebar">
+      <div className="products-admin-sidebar">
         <TagsSeTagsAdminSearchBar
           onSearch={searchByTagsHandler}
           onClearSearch={clearSearchHandler}

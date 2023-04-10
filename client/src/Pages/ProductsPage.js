@@ -7,9 +7,16 @@ import { useLazyGetProductsByTagsQuery } from "../redux/store";
 import { useDispatch } from "react-redux";
 import { setProducts } from "../redux/store";
 import CollectionsList from "../components/CollectionsList";
-import { Routes, Route, useParams } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useParams,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 
-const ProductsPage = () => {
+const ProductsPage = ({ props }) => {
+  const location = useLocation();
   const [showProductList, setShowProductList] = useState(false);
   const searchedProducts = useSelector((state) => state.products.products);
   const [trigger, { data: findedProductsByTags, isSuccess }] =
@@ -22,6 +29,13 @@ const ProductsPage = () => {
       localStorage.removeItem("searchedProducts");
     }
   }, [searchedProducts]);
+
+  useEffect(() => {
+    if (location.state) {
+      console.log(location);
+      trigger(location.state.tags);
+    }
+  }, [location]);
 
   useEffect(() => {
     if (findedProductsByTags) {
@@ -71,6 +85,21 @@ const ProductsPage = () => {
           path="category/:category"
           element={
             <ProductsList searchByCategory={true} clearSearch={clearSearch} />
+          }
+        ></Route>
+        <Route
+          exact
+          path="tags/:tags"
+          element={
+            !showProductList ? (
+              <ProductsList
+                searchByCategory={false}
+                clearSearch={clearSearch}
+                products={findedProductsByTags}
+              />
+            ) : (
+              <Navigate to="/products" />
+            )
           }
         ></Route>
       </Routes>

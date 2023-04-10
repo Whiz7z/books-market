@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../redux/store";
 import {
@@ -11,6 +11,7 @@ import { createGlobalStyle } from "styled-components";
 import { useSelectedTags } from "./zustand/store";
 
 const ProductsList = ({ products, searchByCategory, clearSearch }) => {
+  const location = useLocation();
   const { category } = useParams();
   const navigate = useNavigate();
   const choosenCategory = useSelector(

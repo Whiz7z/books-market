@@ -42,4 +42,5 @@ export {
   useGetAllOrdersQuery,
   useGetMyOrdersQuery,
   useUpdateOrderStatusMutation,
+  useCancelOrderMutation,
 } from "./apis/ordersApi";

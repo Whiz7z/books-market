@@ -37,7 +37,12 @@ function App() {
         <Route path="/payment" element={<StripePage />} exact></Route>
 
         <Route
-          path="/products/category/:category/:id"
+          path={"/products/category/:category/:id"}
+          element={<ProductPage />}
+          exact
+        ></Route>
+        <Route
+          path="/products/tags/:tags/:id"
           element={<ProductPage />}
           exact
         ></Route>

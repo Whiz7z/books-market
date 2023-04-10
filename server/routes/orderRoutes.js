@@ -30,7 +30,7 @@ const createOrder = asyncHandler(async (req, res) => {
       };
     }),
     shippingAddress: req.body.address,
-    totalPrice: calculateTotalPrice(req.body.items),
+    totalPrice: parseFloat(calculateTotalPrice(req.body.items).toFixed(2)),
     isDelivered: false,
     status: "prepearing",
   });
@@ -93,9 +93,30 @@ const changeOrderStatus = asyncHandler(async (req, res) => {
   }
 });
 
+const cancelOrder = asyncHandler(async (req, res) => {
+  const { orderId, status } = req.body.payload;
+  console.log("all orders --- ", status);
+
+  const _id = mongoose.Types.ObjectId(orderId);
+
+  const order = await Order.findById(_id);
+  console.log(order);
+  if (order && !status.trim() == "" && order.status !== "Canceled") {
+    order.status = "Canceled";
+    const updatedOrder = await order.save();
+    res.status(200).json(updatedOrder);
+  } else {
+    res.status(400).send("We could not change order status.");
+    throw new Error(
+      "Something went wrong. Please check your data and try again."
+    );
+  }
+});
+
 orderRoutes.route("/createOrder").post(createOrder);
 orderRoutes.route("/myorders").get(protectRoute, getAllUsersOrders);
 orderRoutes.route("/").get(protectRoute, admin, getAllOrders);
 orderRoutes.route("/").put(protectRoute, admin, changeOrderStatus);
+orderRoutes.route("/cancel").put(protectRoute, cancelOrder);
 
 export default orderRoutes;

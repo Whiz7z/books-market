@@ -23,21 +23,27 @@ const Cart = () => {
 
   let content = (
     <>
+      <h2 className="cart-main-title">Cart</h2>
       <CartList />
-      <button
-        className="cart-remove-all-btn"
-        onClick={() => removeAllItemsHandler()}
-      >
-        Remove All
-      </button>
-      <p className="cart-total-cost">Total cost - ${cart.totalCost}</p>
-      <Link
-        to="/checkout"
-        className="cart-checkout-btn-link"
-        onClick={() => checkoutHandler(cart.items, user.userInfo)}
-      >
-        <button className="cart-checkout-btn">Checkout</button>
-      </Link>
+      <div className="cart_checkout-content">
+        <button
+          className="cart-remove-all-btn"
+          onClick={() => removeAllItemsHandler()}
+        >
+          Remove All
+        </button>
+        <p className="cart-total-cost">
+          Total cost -{" "}
+          <span className="cart-total-cost-span">${cart.totalCost}</span>
+        </p>
+        <Link
+          to="/checkout"
+          className="cart-checkout-btn-link"
+          onClick={() => checkoutHandler(cart.items, user.userInfo)}
+        >
+          Checkout
+        </Link>
+      </div>
     </>
   );
   return (

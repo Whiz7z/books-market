@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useLocation, Link } from "react-router-dom";
 import "../styles/main.css";
 import styled from "styled-components";
 import { userLogout, removeAllItems } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
+import { CgShoppingCart } from "react-icons/cg";
+import IconShoppingCart from "./Icons/IconShoppingCart";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,8 @@ const Menu = () => {
   let activeStyle = {
     textDecoration: "underline",
   };
+
+  const [isHover, setIsHover] = useState(false);
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
@@ -88,8 +92,13 @@ const Menu = () => {
           )}
         </ul>
         <div className="shoping_cart-item">
-          <NavLink to="cart" className="shopping_cart-btn">
-            Shopping cart
+          <NavLink to="cart">
+            <IconShoppingCart
+              className="shopping_cart-btn"
+              fill={isHover ? "#eab839" : "#0d0c1d"}
+              onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)}
+            ></IconShoppingCart>
           </NavLink>
           <div className="shopping_cart-btn-quantity">{quantityOfItems}</div>
         </div>

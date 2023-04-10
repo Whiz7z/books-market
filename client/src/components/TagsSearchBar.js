@@ -101,7 +101,8 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
           })}
       </div>
       <Link
-        to=""
+        to={`tags/${tags}`}
+        state={{ tags: tags }}
         className="categories_search_by_tags-btn"
         onClick={() => searchByTagsHandler(tags)}
       >
