@@ -44,7 +44,10 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
   };
 
   const searchByTagsHandler = (tags) => {
-    onSearch(tags);
+    console.log(tags.length);
+    if (tags.length !== 0) {
+      onSearch(tags);
+    }
   };
 
   const clearSearchAndTags = () => {
@@ -101,7 +104,7 @@ const TagsSearchBar = ({ onSearch, onClearSearch }) => {
           })}
       </div>
       <Link
-        to={`tags/${tags}`}
+        to={tags.length !== 0 ? `tags/${tags}` : ""}
         state={{ tags: tags }}
         className="categories_search_by_tags-btn"
         onClick={() => searchByTagsHandler(tags)}

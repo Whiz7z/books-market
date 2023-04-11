@@ -15,6 +15,8 @@ const AdminOrderItem = ({ order }) => {
           ? "status-prepearing"
           : order.status === "Dispatched"
           ? "status-dispatched"
+          : order.status === "Delivered"
+          ? "status-delivered"
           : order.status === "Canceled"
           ? "status-canceled"
           : null
@@ -37,36 +39,39 @@ const AdminOrderItem = ({ order }) => {
         <p>${order.totalPrice.toFixed(2)}</p>
       </div>
       <div className="order_change_status-container">
-        <p>Status - {order.status}</p>
-        <Formik
-          initialValues={{ status: "" }}
-          onSubmit={(values, actions) => {
-            console.log(values.status, order._id);
-            if (values.status.length > 1) {
-              const payload = { orderId: order._id, status: values.status };
-              changeStatus(payload);
-            }
-            actions.resetForm();
-          }}
-        >
-          {({ errors, touched, values, handleChange, setFieldValue }) => (
-            <Form className="order_change_status-form">
-              <Field
-                as="select"
-                name="status"
-                className="admin_order_change_status-field"
-              >
-                <option value="blanc"></option>
-                <option value="prepearing">Prepearing</option>
-                <option value="dispatched">Dispatched</option>
-                <option value="delivered">Delivered</option>
-              </Field>
-              <button className="admin_order_change_status-btn" type="submit">
-                Change status
-              </button>
-            </Form>
-          )}
-        </Formik>
+        <p>{order.status}</p>
+        {order.status !== "Canceled" && (
+          <Formik
+            initialValues={{ status: "" }}
+            onSubmit={(values, actions) => {
+              console.log(values.status, order._id);
+              if (values.status.length > 1) {
+                const payload = { orderId: order._id, status: values.status };
+                changeStatus(payload);
+              }
+              actions.resetForm();
+            }}
+          >
+            {({ errors, touched, values, handleChange, setFieldValue }) => (
+              <Form className="order_change_status-form">
+                <Field
+                  as="select"
+                  name="status"
+                  className="admin_order_change_status-field"
+                >
+                  <option value="blanc"></option>
+                  <option value="prepearing">Prepearing</option>
+                  <option value="dispatched">Dispatched</option>
+                  <option value="delivered">Delivered</option>
+                </Field>
+
+                <button className="admin_order_change_status-btn" type="submit">
+                  Change status
+                </button>
+              </Form>
+            )}
+          </Formik>
+        )}
       </div>
     </div>
   );

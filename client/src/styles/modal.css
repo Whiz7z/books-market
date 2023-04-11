@@ -19,15 +19,14 @@ body.modal-open {
 
 .edit_product_form-container {
   width: 600px;
-  min-height: 600px;
-  margin-top: 400px;
-
+  margin-bottom: 100px;
   background-color: var(--main);
   grid-column: 2/3;
   align-self: center;
   justify-self: center;
   border: 2px solid black;
   display: grid;
+  padding-bottom: 40px;
 }
 
 .admin_add-edit-form-title {

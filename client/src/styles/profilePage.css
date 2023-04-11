@@ -52,11 +52,13 @@
   justify-self: center;
   margin-top: 20px;
   border: 2px solid black;
+  transition: 200ms;
 }
 
 .myInfo_save-changes-btn:hover {
   background-color: var(--btnhover);
-  transition: 0.4s;
+  color: white;
+  transition: 0.3s;
   border-color: transparent;
 }
 

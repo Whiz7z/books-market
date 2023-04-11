@@ -14,6 +14,9 @@ const messagesApi = createApi({
   endpoints(builder) {
     return {
       getAllMessages: builder.query({
+        providesTags: (result, error) => {
+          return [{ type: "Message Updated" }];
+        },
         query: () => {
           return {
             url: "/api/messages",
@@ -21,9 +24,24 @@ const messagesApi = createApi({
           };
         },
       }),
+      updateMessageStatus: builder.mutation({
+        invalidatesTags: (result, error) => {
+          return [{ type: "Message Updated" }];
+        },
+        query: (payload) => {
+          return {
+            url: "/api/messages/",
+            method: "PUT",
+            body: {
+              payload,
+            },
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useGetAllMessagesQuery } = messagesApi;
+export const { useGetAllMessagesQuery, useUpdateMessageStatusMutation } =
+  messagesApi;
 export { messagesApi };

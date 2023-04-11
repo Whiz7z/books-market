@@ -77,15 +77,18 @@ const AddressCheckout = () => {
             </div>
 
             <div className="login_form-buttons">
-              <button type="submit" className="login_form-btn">
-                Move to payment
-              </button>
-
               <Link to="/cart">
-                <button as={Link} type="button" className="login_form-btn">
+                <button
+                  as={Link}
+                  type="button"
+                  className="login_form-btn login_form-btn-back"
+                >
                   Back to cart
                 </button>
               </Link>
+              <button type="submit" className="login_form-btn">
+                Move to payment
+              </button>
             </div>
           </Form>
         )}

@@ -47,6 +47,7 @@
   color: rgb(0, 0, 0);
   justify-self: center;
   transition: 200ms;
+  border: 2px solid var(--text);
 }
 
 .login_btn-switch {
@@ -60,6 +61,7 @@
   justify-self: center;
   transition: 200ms;
   color: var(--text);
+  border: 2px solid var(--text);
 }
 
 .login_btn-switch:hover {
@@ -70,6 +72,12 @@
 
 .login_form-btn:hover {
   background-color: var(--btnhover);
+  color: white;
+  transition: 0.3s;
+  border-color: transparent;
+}
+.login_form-btn-back:hover {
+  background-color: var(--danger);
   color: white;
   transition: 0.3s;
   border-color: transparent;

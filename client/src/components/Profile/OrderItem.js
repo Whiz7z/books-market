@@ -18,6 +18,8 @@ const OrderItem = ({ order }) => {
           ? "status-prepearing"
           : order.status === "Dispatched"
           ? "status-dispatched"
+          : order.status === "Delivered"
+          ? "status-delivered"
           : order.status === "Canceled"
           ? "status-canceled"
           : null

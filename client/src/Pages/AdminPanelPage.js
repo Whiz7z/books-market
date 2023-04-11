@@ -56,12 +56,6 @@ const AdminPanelPage = () => {
           >
             Orders
           </NavLink>
-          <NavLink
-            to="adminUsers"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Users
-          </NavLink>
 
           <NavLink
             to="adminMessages"
@@ -78,9 +72,7 @@ const AdminPanelPage = () => {
 
         <Route path="adminOrders" element={<AdminOrders />} exact></Route>
 
-        <Route path="adminUsers" element={<AdminUsers />}></Route>
-
-        <Route path="adminMessages" element={<AdminMessages />}></Route>
+        <Route path="adminMessages" element={<AdminMessages />} exact></Route>
       </Routes>
     </>
   );

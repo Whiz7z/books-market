@@ -1,0 +1,71 @@
+.confirm_delete-container {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(201, 201, 201, 0.5);
+  z-index: 155;
+  left: 0;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  padding-top: 100px;
+}
+
+.confirm_delete_form-container {
+  width: 800px;
+  margin-bottom: 100px;
+  background-color: var(--main);
+  align-self: center;
+  justify-self: center;
+  border: 2px solid black;
+  display: grid;
+  padding-bottom: 40px;
+}
+
+.confirm_delete_form-title {
+  margin-top: 30px;
+  justify-self: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.confirm_delete-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-self: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  column-gap: 15px;
+}
+
+.confirm_goback-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid black;
+  height: 40px;
+  transition: 200ms;
+}
+
+.confirm_confirm-btn {
+  width: 140px;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid black;
+  height: 40px;
+  transition: 200ms;
+}
+
+.confirm_goback-btn:hover {
+  background-color: var(--danger);
+  border-color: transparent;
+  color: white;
+  transition: 300ms;
+}
+
+.confirm_confirm-btn:hover {
+  background-color: var(--btnhover);
+  border-color: transparent;
+  color: white;
+  transition: 300ms;
+}

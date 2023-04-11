@@ -48,6 +48,9 @@ export {
   useCancelOrderMutation,
 } from "./apis/ordersApi";
 
-export { useGetAllMessagesQuery } from "./apis/messagesApi";
+export {
+  useGetAllMessagesQuery,
+  useUpdateMessageStatusMutation,
+} from "./apis/messagesApi";
 
 export { ordersApi } from "./apis/ordersApi";

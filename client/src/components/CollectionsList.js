@@ -18,7 +18,7 @@ const CollectionsList = () => {
   return (
     <>
       <h2 className="products-title">Collections</h2>
-      <div className="product_list-container">
+      <div className="colections_list-container">
         {dataCategories &&
           dataCategories.unique.map((el) => (
             <div
@@ -39,7 +39,7 @@ const CollectionsList = () => {
               </p>
               <Link
                 to={`category/${el.category}`}
-                className="product_viev_product-btn"
+                className="product_view_product-btn"
               >
                 View Products
               </Link>

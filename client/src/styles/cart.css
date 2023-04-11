@@ -55,6 +55,7 @@
 .cart-checkout-btn-link:hover {
   background-color: var(--btnhover);
   border-color: transparent;
+  color: white;
   transition: 300ms;
 }
 
@@ -240,14 +241,13 @@ input[type="number"] {
   border: 2px solid black;
   outline: transparent;
 
-  background-color: rgb(29, 250, 0);
   color: black;
   font-weight: bold;
   cursor: pointer;
 }
 
 .cart-checkout-btn:hover {
-  background-color: rgb(85, 231, 99);
+  color: white;
 }
 
 .cart_no-items-found {

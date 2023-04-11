@@ -3,14 +3,20 @@ import ProductModal from "../ProductModal";
 import AdminEditProduct from "./AdminEditProduct";
 import { useDeleteProductMutation } from "../../redux/store";
 import { useSelector } from "react-redux";
+import AdminConfirmDeleteProduct from "./AdminConfirmDeleteProduct";
 
 const AdminProductItem = ({ product }) => {
   const [deleteProduct, deleteProductResults] = useDeleteProductMutation();
   const [editProduct, setEditProduct] = useState();
+  const [deleteProductModal, setDeleteProductModal] = useState();
   const state = useSelector((state) => state);
-  const deleteProductHandler = (product) => {
-    console.log(product);
-    deleteProduct(product._id);
+
+  const openDeleteModal = () => {
+    setDeleteProductModal(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteProductModal(false);
   };
 
   const editProductHandler = (product) => {
@@ -40,7 +46,7 @@ const AdminProductItem = ({ product }) => {
       <div className="admin_product-buttons">
         <button
           className="admin_delete_product-btn"
-          onClick={() => deleteProductHandler(product)}
+          onClick={() => openDeleteModal()}
         >
           Delete Item
         </button>
@@ -57,6 +63,15 @@ const AdminProductItem = ({ product }) => {
             product={product}
             onCloseModal={() => closeModalHandler()}
           />
+        </ProductModal>
+      )}
+
+      {deleteProductModal && (
+        <ProductModal wrapperId="editProductModal">
+          <AdminConfirmDeleteProduct
+            productId={product._id}
+            onCloseModal={closeDeleteModal}
+          ></AdminConfirmDeleteProduct>
         </ProductModal>
       )}
     </div>

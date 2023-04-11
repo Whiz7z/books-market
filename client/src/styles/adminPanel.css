@@ -16,9 +16,13 @@
   display: grid;
   grid-column: 2/3;
   justify-self: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 40px;
   justify-items: center;
+}
+
+.adminPanel-nav-list > a:hover {
+  text-decoration: underline;
 }
 
 .admin_products-title {
@@ -38,14 +42,16 @@
 .admin_product_list-item {
   width: 500px;
   min-height: 500px;
-  border: 2px solid black;
   padding: 0 10px;
-  background-color: var(--third);
+  background-color: transparent;
   display: grid;
+  transition: 200ms;
 }
 
 .admin_product_list-item:hover {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--banner);
+  transition: 300ms;
 }
 
 .admin_product_item-image {
@@ -91,25 +97,33 @@
 }
 
 .admin_delete_product-btn {
-  background-color: rgba(165, 42, 42, 0.7);
+  background-color: transparent;
   cursor: pointer;
   height: 40px;
   border: 2px solid black;
+  transition: 200ms;
 }
 
 .admin_delete_product-btn:hover {
-  background-color: rgba(165, 77, 77, 0.7);
+  background-color: var(--danger);
+  color: white;
+  border-color: transparent;
+  transition: 300ms;
 }
 
 .admin_edit_product-btn {
   height: 40px;
-  background-color: rgba(42, 165, 50, 0.7);
+  background-color: transparent;
   cursor: pointer;
   border: 2px solid black;
+  transition: 200ms;
 }
 
 .admin_edit_product-btn:hover {
-  background-color: rgba(96, 175, 101, 0.7);
+  background-color: var(--btnhover);
+  color: white;
+  transition: 300ms;
+  border-color: transparent;
 }
 
 .edit-field {
@@ -129,39 +143,49 @@
 }
 
 .edit_buttons-cancel {
-  background-color: rgba(165, 42, 42, 0.7);
+  background-color: transparent;
   cursor: pointer;
   border: 2px solid black;
   height: 40px;
+  transition: 200ms;
 }
 .edit_buttons-cancel:hover {
-  background-color: rgba(165, 77, 77, 0.7);
+  background-color: var(--danger);
+  border-color: transparent;
+  color: white;
+  transition: 300ms;
 }
 
 .edit_buttons-save {
-  background-color: rgba(42, 165, 50, 0.7);
+  background-color: transparent;
   cursor: pointer;
   border: 2px solid black;
   height: 40px;
+  transition: 200ms;
 }
 
 .edit_buttons-save:hover {
-  background-color: rgba(96, 175, 101, 0.7);
+  background-color: var(--btnhover);
+  border-color: transparent;
+  color: white;
+  transition: 300ms;
 }
 
 .admin_add_new_product-btn {
   border: 2px solid black;
   height: 40px;
-  width: 120px;
-  background-color: rgb(96, 175, 101);
+  width: 140px;
+  background-color: transparent;
   cursor: pointer;
-  border-top: none;
-  border-right: none;
   justify-self: flex-end;
+  transition: 200ms;
 }
 
 .admin_add_new_product-btn:hover {
-  background-color: rgba(96, 175, 101, 0.7);
+  background-color: var(--btnhover);
+  border-color: transparent;
+  color: white;
+  transition: 300ms;
 }
 
 .category_field-container {

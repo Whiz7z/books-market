@@ -81,7 +81,7 @@ const changeOrderStatus = asyncHandler(async (req, res) => {
 
   const order = await Order.findById(_id);
   console.log(order);
-  if (order && !status.trim() == "") {
+  if (order && !status.trim() == "" && order.status !== "Canceled") {
     order.status = status;
     const updatedOrder = await order.save();
     res.status(200).json(updatedOrder);

@@ -1,0 +1,94 @@
+.messages_wrapper {
+  width: 100%;
+  display: grid;
+  padding-top: 100px;
+  padding-bottom: 140px;
+}
+
+.messages_main-title {
+  justify-self: center;
+  margin-bottom: 100px;
+}
+
+.messages_container {
+  width: 1600px;
+  justify-self: center;
+  display: grid;
+}
+
+.messages-titles {
+  display: grid;
+  grid-template-columns: 200px 350px 1fr 300px;
+  justify-items: center;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  padding: 15px 0;
+}
+
+.message_date-title {
+}
+
+.message_email-title {
+}
+
+.message_text-title {
+}
+
+.message_status-title {
+}
+
+.message-item {
+  display: grid;
+  grid-template-columns: 200px 350px 1fr 300px;
+  justify-items: center;
+  min-height: 100px;
+  align-items: center;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  padding: 15px 0;
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
+}
+
+.message-item:hover {
+  border-right: 2px solid rgba(0, 0, 0, 0.25);
+  border-left: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+.message-date {
+}
+
+.message_sender-email {
+  justify-self: start;
+}
+
+.message_text-message {
+  justify-self: start;
+}
+
+.message_status {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.message_change_status-btn {
+  width: 140px;
+  height: 40px;
+  background-color: transparent;
+  border: 2px solid black;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+.message_change_status-btn:hover {
+  border-color: transparent;
+  transition: 300ms;
+  background-color: var(--btnhover);
+  color: white;
+}
+
+.status-read {
+  background-color: var(--thirdopacity);
+}
+
+.status-unread {
+  background-color: var(--dangeropacity);
+}

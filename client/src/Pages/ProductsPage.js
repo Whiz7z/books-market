@@ -44,8 +44,8 @@ const ProductsPage = ({ props }) => {
   }, [findedProductsByTags]);
 
   const searchHandler = (tags) => {
-    setShowProductList(false);
     if (tags.length > 0) {
+      setShowProductList(false);
       trigger(tags).then((res) => {
         console.log(res.status);
       });
