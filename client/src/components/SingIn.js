@@ -68,10 +68,8 @@ const SingIn = () => {
               <button type="submit" className="login_form-btn">
                 Sign In
               </button>
-              <Link to="/registration">
-                <button as={Link} type="button" className="login_btn-switch">
-                  Switch to Sign Up
-                </button>
+              <Link to="/registration" className="login_btn-switch">
+                Switch to Sign Up
               </Link>
             </div>
           </Form>

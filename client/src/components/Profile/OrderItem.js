@@ -38,7 +38,7 @@ const OrderItem = ({ order }) => {
         <p>${order.totalPrice.toFixed(2)}</p>
       </div>
       <div className="order_change_status-container">
-        <p>Status - {order.status}</p>
+        <p>{order.status}</p>
         {order.status !== "Canceled" && order.status !== "Dispatched" && (
           <Formik
             initialValues={{ status: "" }}

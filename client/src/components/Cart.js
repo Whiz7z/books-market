@@ -33,7 +33,7 @@ const Cart = () => {
           Remove All
         </button>
         <p className="cart-total-cost">
-          Total cost -{" "}
+          Total -{" "}
           <span className="cart-total-cost-span">${cart.totalCost}</span>
         </p>
         <Link

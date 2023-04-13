@@ -1,11 +1,10 @@
 .login_page-container {
   display: grid;
-  grid-template-columns: 1fr minmax(200px, 500px) 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   height: 700px;
 }
 
 .form_main-label {
-  margin-top: 40px;
   justify-self: center;
   align-self: center;
 }
@@ -26,14 +25,17 @@
   position: relative;
   padding: 20px;
   display: grid;
-  grid-template-rows: auto;
+  width: 100%;
   align-items: center;
+  justify-self: center;
   row-gap: 25px;
-  overflow: hidden;
 }
 
 .form-field-label-container {
+  width: 100%;
   display: grid;
+  grid-template-columns: 1fr;
+  justify-self: center;
   row-gap: 20px;
 }
 
@@ -51,10 +53,13 @@
 }
 
 .login_btn-switch {
+  display: block;
+  text-align: center;
   width: 200px;
   height: 40px;
   line-height: 38px;
   justify-self: center;
+  font-size: 14px;
   background-color: transparent;
   cursor: pointer;
   color: rgb(0, 0, 0);
@@ -84,9 +89,7 @@
 }
 
 .login_form-field-container {
-  display: grid;
-  max-width: 100%;
-  row-gap: 10px;
+  width: 100%;
 }
 
 .edit-field {
@@ -154,4 +157,48 @@
   justify-self: center;
 
   grid-column: 2/3;
+}
+
+@media only screen and (max-width: 660px) {
+  /* .login_page-container {
+    grid-template-columns: 30px minmax(500px, 1fr) 30px;
+    justify-content: center;
+  } */
+
+  .login_form-buttons {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-self: center;
+    width: 400px;
+    row-gap: 25px;
+  }
+
+  .login_form-field {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .login_form-buttons {
+    width: 300px;
+  }
+
+  .login_page-container {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .login_form-container {
+    grid-column: 1/2;
+    font-size: 14px;
+  }
+  .login_form-field {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .login_form-buttons {
+    width: 200px;
+  }
 }

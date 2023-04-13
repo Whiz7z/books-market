@@ -552,6 +552,7 @@ button::-moz-focus-inner {
   .menu {
     justify-items: center;
     margin-bottom: 20px;
+    row-gap: 15px;
   }
 
   .products-wrapper {
