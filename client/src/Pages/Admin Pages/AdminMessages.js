@@ -39,7 +39,7 @@ const AdminMessages = () => {
               </div>
               <div className="message_sender-email">{message.email}</div>
               <div className="message_text-message">{message.message}</div>
-              <div>
+              <div className="message_status-container">
                 <p className="message_status">
                   {message.isRead ? "Read" : "Unread"}
                 </p>

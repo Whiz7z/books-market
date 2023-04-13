@@ -28,14 +28,14 @@ const AdminProducts = () => {
   };
 
   return (
-    <div className="products-wrapper">
+    <div className="products-admin-wrapper">
       <div className="products-admin-sidebar">
         <TagsSeTagsAdminSearchBar
           onSearch={searchByTagsHandler}
           onClearSearch={clearSearchHandler}
         />
       </div>
-      <div className="products-content">
+      <div className="products-admin-content">
         <button
           className="admin_add_new_product-btn"
           onClick={() => setAddNewProduct(true)}

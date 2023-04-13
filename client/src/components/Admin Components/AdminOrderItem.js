@@ -32,8 +32,8 @@ const AdminOrderItem = ({ order }) => {
         ))}
       </div>
       <div className="order-user-id-gmails">
-        <p>{`User E-mail - ${order.user.email}`}</p>
-        <p>{`User Id - ${order.user._id}`}</p>
+        <p>{`E-mail - ${order.user.email}`}</p>
+        <p>{`Id - ${order.user._id}`}</p>
       </div>
       <div className="order-total-price">
         <p>${order.totalPrice.toFixed(2)}</p>

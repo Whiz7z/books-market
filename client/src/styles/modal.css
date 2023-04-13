@@ -18,7 +18,7 @@ body.modal-open {
 }
 
 .edit_product_form-container {
-  width: 600px;
+  max-width: 600px;
   margin-bottom: 100px;
   background-color: var(--main);
   grid-column: 2/3;
@@ -64,4 +64,21 @@ body.modal-open {
 .form_tag-item:hover {
   background-color: #6184d8;
   transition: 300ms;
+}
+
+@media only screen and (max-width: 1250px) {
+  .edit_product_modal-container {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .edit_product_form-container {
+    grid-column: 1/2;
+
+    font-size: 14px;
+  }
+
+  .login_form-field-container {
+    font-size: 12px;
+  }
 }

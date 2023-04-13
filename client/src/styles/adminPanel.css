@@ -25,8 +25,44 @@
   text-decoration: underline;
 }
 
+.products-admin-wrapper {
+  display: grid;
+  grid-template-columns: 280px 5fr;
+}
+
 .admin_products-title {
   margin-bottom: 30px;
+  justify-self: center;
+}
+
+.products-admin-sidebar {
+  grid-column: 1/2;
+  justify-items: center;
+  justify-self: center;
+  align-self: start;
+  border: 2px solid black;
+  position: sticky;
+  width: 250px;
+  top: 5%;
+  margin-top: 20px;
+  padding: 0 0 40px 0;
+}
+
+.categories_list-container {
+  padding: 5px;
+  margin-top: 35px;
+  width: 100%;
+  display: flex;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 5px;
+}
+.categories-title {
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
 }
 
 .admin_product_list-container {
@@ -37,6 +73,12 @@
   justify-items: center;
   margin: 0 80px 0 80px;
   margin-bottom: 40px;
+}
+
+.products-admin-content {
+  grid-column: 2/3;
+
+  display: grid;
 }
 
 .admin_product_list-item {
@@ -175,6 +217,9 @@
   border: 2px solid black;
   height: 40px;
   width: 140px;
+  margin-right: 100px;
+  margin-top: 60px;
+  margin-bottom: 30px;
   background-color: transparent;
   cursor: pointer;
   justify-self: flex-end;
@@ -221,7 +266,9 @@
 
 .create_product_file-input-label {
   display: block;
-  width: 120px;
+  padding: 0 15px;
+  font-size: 14px;
+  width: 140px;
   height: 40px;
   line-height: 38px;
   text-align: center;
@@ -235,4 +282,70 @@
   width: 200px;
   height: 200px;
   object-fit: contain;
+}
+
+@media only screen and (max-width: 1660px) {
+  .admin_product_list-item {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .admin_product_list-container {
+    margin: 0 20px;
+  }
+
+  .admin_product_list-item {
+    width: 350px;
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .admin_product_list-container {
+    grid-template-columns: 1fr;
+  }
+
+  .admin_product_list-item {
+    width: 350px;
+    padding-bottom: 20px;
+  }
+
+  .admin_product_item-title {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .products-admin-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .products-admin-sidebar {
+    grid-column: 1/2;
+    position: static;
+    width: 80vw;
+  }
+
+  .products-admin-content {
+    grid-column: 1/2;
+  }
+
+  .adminPanel-nav-list {
+    width: 300px;
+    font-size: 14px;
+    column-gap: 0px;
+  }
+
+  .edit-field {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .admin_product_list-item {
+    font-size: 14px;
+    width: 260px;
+  }
 }

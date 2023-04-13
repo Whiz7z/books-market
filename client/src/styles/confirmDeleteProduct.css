@@ -13,7 +13,7 @@
 }
 
 .confirm_delete_form-container {
-  width: 800px;
+  max-width: 800px;
   margin-bottom: 100px;
   background-color: var(--main);
   align-self: center;
@@ -21,6 +21,8 @@
   border: 2px solid black;
   display: grid;
   padding-bottom: 40px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .confirm_delete_form-title {
@@ -40,6 +42,7 @@
 }
 
 .confirm_goback-btn {
+  width: 140px;
   background-color: transparent;
   cursor: pointer;
   border: 2px solid black;
@@ -68,4 +71,28 @@
   border-color: transparent;
   color: white;
   transition: 300ms;
+}
+
+@media only screen and (max-width: 860px) {
+  .confirm_delete_form-container {
+    width: 400px;
+  }
+
+  .confirm_delete_form-title {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .confirm_delete_form-container {
+    width: 300px;
+  }
+
+  .confirm_goback-btn {
+    width: 90px;
+  }
+
+  .confirm_confirm-btn {
+    width: 90px;
+  }
 }

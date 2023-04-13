@@ -3,6 +3,8 @@
   display: grid;
   padding-top: 100px;
   padding-bottom: 140px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .messages_main-title {
@@ -11,14 +13,16 @@
 }
 
 .messages_container {
-  width: 1600px;
+  max-width: 1600px;
   justify-self: center;
   display: grid;
 }
 
 .messages-titles {
   display: grid;
-  grid-template-columns: 200px 350px 1fr 300px;
+  grid-template-columns:
+    minmax(110px, 200px) minmax(250px, 350px) minmax(500px, 1fr)
+    minmax(180px, 300px);
   justify-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.25);
   padding: 15px 0;
@@ -38,7 +42,9 @@
 
 .message-item {
   display: grid;
-  grid-template-columns: 200px 350px 1fr 300px;
+  grid-template-columns:
+    minmax(110px, 200px) minmax(250px, 350px) minmax(500px, 1fr)
+    minmax(180px, 300px);
   justify-items: center;
   min-height: 100px;
   align-items: center;
@@ -91,4 +97,76 @@
 
 .status-unread {
   background-color: var(--dangeropacity);
+}
+
+@media only screen and (max-width: 1080px) {
+  .messages_container {
+  }
+
+  .messages-titles {
+    display: none;
+  }
+
+  .message-item {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+  }
+
+  .message-date {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .message_sender-email {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    justify-self: center;
+    padding: 0 15px;
+  }
+
+  .message_text-message {
+    grid-row: 2/3;
+    grid-column: 1/3;
+    padding: 0 15px;
+  }
+
+  .message_status-container {
+    grid-column: 1/3;
+    grid-row: 3/4;
+    justify-self: center;
+  }
+
+  .message_change_status-btn {
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .message-item {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .message-date {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .message_sender-email {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    justify-self: center;
+    padding: 0 15px;
+  }
+
+  .message_text-message {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    padding: 0 15px;
+  }
+
+  .message_status-container {
+    grid-column: 1/2;
+    grid-row: 4/5;
+    justify-self: center;
+  }
 }

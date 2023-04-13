@@ -146,10 +146,9 @@ const cartSlice = createSlice({
       let index = current(state).items.findIndex(
         (el) => el.item._id === action.payload
       );
+
       state.totalItemsQuantity -= state.items[index].quantity;
-      state.totalCost -=
-        state.items[index].quantity *
-        parseFloat(state.items[index].item.price.toFixed(2));
+
       state.items.splice(index, 1);
 
       localStorage.setItem("cartTotalCost", JSON.stringify(state.totalCost));
@@ -158,6 +157,14 @@ const cartSlice = createSlice({
         JSON.stringify(state.totalItemsQuantity)
       );
       localStorage.setItem("cartItems", JSON.stringify(state.items));
+
+      let calculatedTotalCost = 0;
+      for (let i = 0; i < state.items.length; i++) {
+        calculatedTotalCost +=
+          state.items[i].item.price * state.items[i].quantity;
+      }
+
+      state.totalCost = parseFloat(calculatedTotalCost.toFixed(2));
     },
     removeAllItems: (state, action) => {
       state.items = [];
