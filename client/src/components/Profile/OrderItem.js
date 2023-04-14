@@ -39,20 +39,22 @@ const OrderItem = ({ order }) => {
       </div>
       <div className="order_change_status-container">
         <p>{order.status}</p>
-        {order.status !== "Canceled" && order.status !== "Dispatched" && (
-          <Formik
-            initialValues={{ status: "" }}
-            onSubmit={(values, actions) => {
-              setCancelOrder(true);
-            }}
-          >
-            {({ errors, touched, values, handleChange, setFieldValue }) => (
-              <Form className="order_change_status-form">
-                <button className="order_cancel-btn">Cancel order</button>
-              </Form>
-            )}
-          </Formik>
-        )}
+        {order.status !== "Canceled" &&
+          order.status !== "Dispatched" &&
+          order.status !== "Delivered" && (
+            <Formik
+              initialValues={{ status: "" }}
+              onSubmit={(values, actions) => {
+                setCancelOrder(true);
+              }}
+            >
+              {({ errors, touched, values, handleChange, setFieldValue }) => (
+                <Form className="order_change_status-form">
+                  <button className="order_cancel-btn">Cancel order</button>
+                </Form>
+              )}
+            </Formik>
+          )}
       </div>
       {cancelOrder && (
         <ProductModal wrapperId="cancelOrderModal">

@@ -40,8 +40,24 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
+const getProductOfTheWeek = asyncHandler(async (req, res) => {
+  const product = await Product.findOne({ isProductOfTheWeek: true });
+
+  if (product) {
+    try {
+      console.log(product);
+      res.json(product);
+    } catch (err) {}
+  } else {
+    res.status(404).json("Product not found");
+    throw new Error("Product not found.");
+  }
+});
+
+getProductOfTheWeek;
+
 const getProductByTags = asyncHandler(async (req, res) => {
-  if (req.query.tags.trim("").length > 0) {
+  if (req.query.tags && req.query.tags.trim("").length > 0) {
     const tags = req.query.tags.split(",");
 
     try {
@@ -127,6 +143,51 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 });
 
+const setProductOfTheWeek = asyncHandler(async (req, res) => {
+  //console.log(req.body);
+  const { id } = req.body;
+
+  const _id = mongoose.Types.ObjectId(id);
+
+  const prevProduct = await Product.findOne({ isProductOfTheWeek: true });
+
+  if (prevProduct) {
+    prevProduct.isProductOfTheWeek = false;
+    try {
+      await prevProduct.save();
+    } catch (err) {}
+  }
+
+  const product = await Product.findById(_id);
+  if (product) {
+    product.isProductOfTheWeek = true;
+    const newProductOfTheWeek = await product.save();
+
+    res.json(newProductOfTheWeek);
+  } else {
+    res.status(404);
+    throw new Error("Product not found.");
+  }
+});
+
+const removeProductFromTheWeek = asyncHandler(async (req, res) => {
+  //console.log(req.body);
+  const { id } = req.body;
+
+  const _id = mongoose.Types.ObjectId(id);
+
+  const product = await Product.findById(_id);
+  if (product) {
+    product.isProductOfTheWeek = false;
+    const newProductOfTheWeek = await product.save();
+
+    res.json(newProductOfTheWeek);
+  } else {
+    res.status(404);
+    throw new Error("Product not found.");
+  }
+});
+
 const createProduct = asyncHandler(async (req, res) => {
   const { title, description, price, category, stock, author, tags } =
     req.body.product;
@@ -205,10 +266,17 @@ const deleteProduct = asyncHandler(async (req, res) => {
 });
 
 productRoutes.route("/").get(getProducts);
+productRoutes.route("/ofTheWeek").get(getProductOfTheWeek);
 productRoutes.route("/byTags").get(getProductByTags);
 productRoutes.route("/byId").get(getProductById);
 productRoutes.route("/categories").get(getCategoriesAndPreview);
 productRoutes.route("/").put(protectRoute, admin, updateProduct);
+productRoutes
+  .route("/setOnTheBanner")
+  .put(protectRoute, admin, setProductOfTheWeek);
+productRoutes
+  .route("/removeFromTheBanner")
+  .put(protectRoute, admin, removeProductFromTheWeek);
 productRoutes.route("/").post(protectRoute, admin, createProduct);
 productRoutes.route("/").delete(protectRoute, admin, deleteProduct);
 

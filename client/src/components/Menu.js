@@ -93,15 +93,21 @@ const Menu = () => {
           )}
         </ul>
         <div className="shoping_cart-item">
-          <NavLink to="cart">
-            <IconShoppingCart
-              className="shopping_cart-btn"
-              fill={isHover ? "#eab839" : "#0d0c1d"}
-              onMouseEnter={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)}
-            ></IconShoppingCart>
-          </NavLink>
-          <div className="shopping_cart-btn-quantity">{quantityOfItems}</div>
+          {userInfo && userInfo.token && (
+            <>
+              <NavLink to="cart">
+                <IconShoppingCart
+                  className="shopping_cart-btn"
+                  fill={isHover ? "#eab839" : "#0d0c1d"}
+                  onMouseEnter={() => setIsHover(true)}
+                  onMouseLeave={() => setIsHover(false)}
+                ></IconShoppingCart>
+              </NavLink>
+              <div className="shopping_cart-btn-quantity">
+                {quantityOfItems}
+              </div>
+            </>
+          )}
         </div>
       </nav>
     </header>

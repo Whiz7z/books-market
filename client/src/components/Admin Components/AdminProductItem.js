@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import ProductModal from "../ProductModal";
 import AdminEditProduct from "./AdminEditProduct";
-import { useDeleteProductMutation } from "../../redux/store";
+import {
+  useDeleteProductMutation,
+  useSetProductOnTheBannerMutation,
+  useRemoveProductFromTheBannerMutation,
+} from "../../redux/store";
 import { useSelector } from "react-redux";
 import AdminConfirmDeleteProduct from "./AdminConfirmDeleteProduct";
 
 const AdminProductItem = ({ product }) => {
   const [deleteProduct, deleteProductResults] = useDeleteProductMutation();
+  const [setProductOfTheWeek, setProductOfTheWeekResults] =
+    useSetProductOnTheBannerMutation();
+
+  const [removeProductFromTheBanner, removeProductFromTheBannerResults] =
+    useRemoveProductFromTheBannerMutation();
   const [editProduct, setEditProduct] = useState();
   const [deleteProductModal, setDeleteProductModal] = useState();
   const state = useSelector((state) => state);
@@ -25,6 +34,14 @@ const AdminProductItem = ({ product }) => {
 
   const closeModalHandler = () => {
     setEditProduct(false);
+  };
+
+  const setProductOnTheBanner = (id) => {
+    setProductOfTheWeek(id);
+  };
+
+  const removeProductFromTheBannerHandler = (id) => {
+    removeProductFromTheBanner(id);
   };
 
   let imagePath;
@@ -56,6 +73,23 @@ const AdminProductItem = ({ product }) => {
         >
           Edit Item
         </button>
+      </div>
+      <div className="admin_product_set-on-banner">
+        {product.isProductOfTheWeek ? (
+          <button
+            className="admin_product_set-on-banner-btn admin-remove-from-banner"
+            onClick={() => removeProductFromTheBannerHandler(product._id)}
+          >
+            Remove product from the banner
+          </button>
+        ) : (
+          <button
+            className="admin_product_set-on-banner-btn admin-set-on-banner"
+            onClick={() => setProductOnTheBanner(product._id)}
+          >
+            Set as product of the week
+          </button>
+        )}
       </div>
       {editProduct && (
         <ProductModal wrapperId="editProductModal">

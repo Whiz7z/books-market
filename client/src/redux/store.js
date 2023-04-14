@@ -39,6 +39,9 @@ export {
   useGetAllTagsQuery,
   useLazyGetProductsByTagsQuery,
   useGetProductByIdQuery,
+  useSetProductOnTheBannerMutation,
+  useRemoveProductFromTheBannerMutation,
+  useGetProductOfTheWeekQuery,
 } from "./apis/productsApi";
 
 export {

@@ -83,7 +83,7 @@
 
 .admin_product_list-item {
   width: 500px;
-  min-height: 500px;
+  min-height: 600px;
   padding: 0 10px;
   background-color: transparent;
   display: grid;
@@ -166,6 +166,38 @@
   color: white;
   transition: 300ms;
   border-color: transparent;
+}
+
+.admin_product_set-on-banner {
+  justify-self: center;
+  align-self: center;
+}
+
+.admin_product_set-on-banner-btn {
+  height: 40px;
+  padding: 0 10px;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid black;
+  transition: 200ms;
+  font-size: 12px;
+}
+
+.admin-set-on-banner:hover {
+  background-color: var(--btnhover);
+  color: white;
+  transition: 300ms;
+  border-color: transparent;
+}
+
+.admin-remove-from-banner:hover {
+  background-color: var(--danger);
+  color: white;
+  transition: 300ms;
+  border-color: transparent;
+}
+
+.admin_product_remover-from-banner-btn {
 }
 
 .edit-field {

@@ -54,6 +54,15 @@ const productsApi = createApi({
           };
         },
       }),
+      getProductOfTheWeek: builder.query({
+        query: () => {
+          return {
+            url: "/api/products/ofTheWeek",
+
+            method: "GET",
+          };
+        },
+      }),
       getCategoriesAndPreview: builder.query({
         query: () => {
           return {
@@ -80,6 +89,34 @@ const productsApi = createApi({
             method: "PUT",
             body: {
               product,
+            },
+          };
+        },
+      }),
+      setProductOnTheBanner: builder.mutation({
+        invalidatesTags: (result, error) => {
+          return [{ type: "Product Updated" }];
+        },
+        query: (id) => {
+          return {
+            url: "/api/products/setOnTheBanner",
+            method: "PUT",
+            body: {
+              id,
+            },
+          };
+        },
+      }),
+      removeProductFromTheBanner: builder.mutation({
+        invalidatesTags: (result, error) => {
+          return [{ type: "Product Updated" }];
+        },
+        query: (id) => {
+          return {
+            url: "/api/products/removeFromTheBanner",
+            method: "PUT",
+            body: {
+              id,
             },
           };
         },
@@ -125,5 +162,8 @@ export const {
   useGetAllTagsQuery,
   useLazyGetProductsByTagsQuery,
   useGetProductByIdQuery,
+  useSetProductOnTheBannerMutation,
+  useRemoveProductFromTheBannerMutation,
+  useGetProductOfTheWeekQuery,
 } = productsApi;
 export { productsApi };
