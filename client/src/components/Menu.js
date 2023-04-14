@@ -29,7 +29,7 @@ const Menu = () => {
   return (
     <header className="header-wrapper">
       <div className="top-menu">
-        <div className="logo">Flea market</div>
+        <div className="logo">Books market</div>
 
         {localStorage.getItem("userInfo") &&
         JSON.parse(localStorage.getItem("userInfo")).token ? (
